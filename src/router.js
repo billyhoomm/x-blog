@@ -156,7 +156,7 @@ const router = new VueRouter({
 });
 
 /**
- * technology-three:路由钩子函数登录状态检查(promise的使用)
+ * 登录状态检查
  * */
 router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.requiresAuth)) {

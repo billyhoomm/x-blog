@@ -3,7 +3,7 @@
   <div class="login container-fulid  animated fadeIn">
     <div class="login-content">
       <div class="login-content-inner clearfix">
-        <h1><span class="blue">奈文</span>摩尔</h1>
+        <h1><span class="blue">X</span>-SONGTAO</h1>
         <h4><span class="blue">后台</span>管理</h4>
         <div class="divider"></div>
         <div class="form-horizontal" v-on:keydown.enter="loginBtn()">

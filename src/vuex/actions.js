@@ -1,6 +1,5 @@
 /**
  * Description: action 是一种专门用来被 component 调用的函数。
- * technology-one：用于在组件中的method中使用...actions调用更易进行状态提交
  */
 
 

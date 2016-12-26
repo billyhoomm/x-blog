@@ -1,8 +1,8 @@
 {
-  "name": "X-SONGTAO-VUE",
+  "name": "VUE",
   "version": "2.0.0",
-  "description": "X-SongTao Blog Project@Vue2.0",
-  "author": "向松涛 <280304286@163.com>",
+  "description": "Blog-System@Vue2.0",
+  "author": "billy <billyhoom@qq.com>",
   "private": true,
   "scripts": {
     "dev": "node build/dev-server.js",

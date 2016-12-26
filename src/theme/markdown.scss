@@ -4,7 +4,7 @@
 @import "variables";
 
 .markdown-body {
-  font-family: 'Trebuchet MS', 'Lato', 'PingFang SC', 'Open Sans', 'Helvetica Neue', Arial, 'Hiragino Sans GB', 'Microsoft YaHei', 'WenQuanYi Micro Hei', sans-serif !important;
+  font-family: $font-family-sans-serif;
   font-size: 16px;
   line-height: 1.6;
   word-wrap: break-word

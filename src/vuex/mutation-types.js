@@ -1,6 +1,5 @@
 /**
  * Description: Mutation事件名称集合
- * technology-two:使用常量替代 Mutation事件类型,便于管理，逻辑清晰
  */
 //全局
 export const SET_SHOWMYWORD_STATUS = 'SET_SHOWMYWORD_STATUS';//控制是否显示我的个人称述

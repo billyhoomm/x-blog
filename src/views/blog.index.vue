@@ -4,8 +4,8 @@
       <div class="head-wrap">
         <h3 class="text-center services">The blog of billyh</h3>
         <div id="headlines">
-          <h1 :class="{'current': now==1}" class="text-center textItem">Hello <span class="blue">Guys</span></h1>
-          <h1 :class="{'current': now==2}" class="text-center textItem">I'm<span class="blue">Billy</span></h1>
+          <h1 :class="{'current': now==1}" class="text-center textItem">Hello <span class="blue">world</span></h1>
+          <h1 :class="{'current': now==2}" class="text-center textItem">我是<span class="blue">傻逼</span></h1>
           <h1 :class="{'current': now==3}" class="text-center textItem">念念<span class="blue">不忘</span> 必有<span
             class="blue">回响</span></h1>
           <h1 :class="{'current': now==4}" class="text-center textItem"><span class="blue">凡有所学</span>皆成性格</h1>
@@ -87,6 +87,7 @@
             text-align: center;
             opacity: 0;
             transition: all ease 800ms;
+            text-transform: uppercase;
             margin: 10px 0 !important;
             text-overflow: ellipsis;
             overflow: hidden;
