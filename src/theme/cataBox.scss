@@ -1,0 +1,74 @@
+@charset "UTF-8";
+
+//时光机和标签库公用的分类盒子样式
+.cataBox {
+  user-select: none;
+  -webkit-user-select: none;
+  position: relative;
+  margin-bottom: 20px;
+  //border-radius: 4px;
+  overflow: hidden;
+
+  &::after {
+    /*content: '';*/
+    border-top: 4px solid $base-theme-color;
+    position: absolute;
+    top: 0;
+    right: 0;
+    border-top-right-radius: 3px;
+    width: 40%;
+    height: 0;
+  }
+  .cataBox__title {
+    padding: 20px 15px 7px 43px;
+    color: #fff;
+    margin: 0;
+    text-align: right;
+    background: $base-background-color;
+    position: relative;
+    @include display-flex;
+    @include justify-content(flex-end);
+    @include align-items(center);
+    .main {
+      font-size: 50px;
+      z-index: 1;
+      margin-right: 10px;
+    }
+    .tag {
+      //z-index:1;
+      //font-size: 20px;
+      //color: $base-theme-color;
+
+      font-size: 20px;
+      background: $base-theme-color;
+      color: #fff;
+      border-radius: 5px;
+      padding: 3px 6px;
+      position: relative;
+      font-weight: 400;
+      vertical-align: baseline;
+      top: 2px;
+    }
+  }
+  .cataBox__content {
+    width: 100%;
+    background-color: #fff;
+    padding: 15px 0;
+  }
+
+}
+
+@include media("<=phone") {
+
+  .cataBox{
+    .cataBox__title{
+      .main{
+        font-size: 30px;
+      }
+      .tag{
+        top: 0;
+      }
+    }
+  }
+
+}

@@ -1,0 +1,9 @@
+_config.yml
+.idea
+*.zip
+*.txt
+node_modules
+backup
+.DS_Store
+.svn
+dist
