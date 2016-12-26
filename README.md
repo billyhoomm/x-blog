@@ -79,15 +79,21 @@ if (process.env.NODE_ENV === 'production') {
 
 2、关于个人信息（包括登录密码）的注册，在启动后台代码后，可以使用chrome浏览器的Postman插件进行注册，API格式可以在后台代码中的api.md文件中看到，下面贴出个人信息注册截图
 注册：
-[](http://www.billyh.cn/resource/img-resource/postman-1.png)
+![](http://www.billyh.cn/resource/img-resource/postman-1.png)
 返回：
-[](http://www.billyh.cn/resource/img-resource/postman-2.png)
+![](http://www.billyh.cn/resource/img-resource/postman-2.png)
 
 注册完成后将返回信息填入以上配置项即可使用账号密码登录博客后台界面
 
-3、关于mongodb，在后台代码启动前需要先在服务器/本地安装mongodb并进行配置，具体操作过程可google或百度搜索教程
-## 项目结构
+3、后台环境配置
 
+- 关于mongodb，在后台代码启动前需要先在服务器/本地安装mongodb并进行配置，具体操作过程可google或百度搜索教程
+- pm2安装（项目启动管理）
+- 进入app/config/config.js修改数据库配置信息
+
+4、public目录是前端npm run build后最终构建好的项目存放目录，构建后的dist里面的内容放在此处再启动后台即可进入生产环境
+
+## 项目结构
 
 ```
 |-build  				//webpack配置，webpack.base.conf.js中的基础配置需要特别注意
