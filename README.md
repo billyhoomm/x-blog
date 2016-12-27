@@ -50,7 +50,30 @@ npm run build
 
 ```
 
-### 调试和上线注意事项
+## 项目结构
+
+```
+|-build                 //webpack配置，webpack.base.conf.js中的基础配置需要特别注意
+|-config
+|-dist                  //目标文件
+|-src                   //开发目录
+|----App.vue            //基本配置、根组件实例
+|----config.js          //url及个人信息配置
+|----main.js            //初始化配置及组件挂载（入口文件）
+|----router.js          //路由配置
+|----api                //http请求方法
+|----assets             //静态资源（图片等）
+|----components         //小组件
+|----plugin             //插件（放在此处是为了定制和修改）
+|----theme              //公共样式文件
+|----utils              //filter等工具组件
+|----views              //整个页面组件集合
+|----vuex               //全局状态管理（管理登录状态和音乐播放等）
+|-static
+|-test
+```
+
+## 调试和上线注意事项
 
 **1、**后台代码在前面已有介绍，在启动后台代码之前，需要配置src/config
 ```
@@ -94,29 +117,6 @@ if (process.env.NODE_ENV === 'production') {
 **5、**后台版块public目录是前端npm run build后最终构建好的项目存放目录，前端版块打包后的dist里面的内容放在此处再启动后台即可进入生产环境
 
 **6、**在博客编辑器使用上传图片功能需要在项目目录的public目录下建立一个uploads子目录，用于存放图片，否则上传图片时会报错
-
-## 项目结构
-
-```
-|-build  				//webpack配置，webpack.base.conf.js中的基础配置需要特别注意
-|-config
-|-dist  				//目标文件
-|-src  					//开发目录
-|----App.vue  			//基本配置、根组件实例
-|----config.js  		//url及个人信息配置
-|----main.js  			//初始化配置及组件挂载（入口文件）
-|----router.js  		//路由配置
-|----api  				//http请求方法
-|----assets  			//静态资源（图片等）
-|----components  		//小组件
-|----plugin  			//插件（放在此处是为了定制和修改）
-|----theme  			//公共样式文件
-|----utils  			//filter等工具组件
-|----views  			//整个页面组件集合
-|----vuex  				//全局状态管理（管理登录状态和音乐播放等）
-|-static
-|-test
-```
 
 ## webpack引入jQuery插件以及基础配置
 
