@@ -1,6 +1,6 @@
 # Vue2.0-Blog-System
 
-> 使用Vue2.0开发的博客前端版块，本项目基于[此处](https://github.com/xiangsongtao/X-SONGTAO-VUE)，作了样式以及功能上的修改和定制，另外后台代码在[另一个仓库](https://github.com/billyhoomm/blog-stage),在此主要写博客系统中关于技术细节的详细教程，欢迎star和改进本项目，我将会持续更新和增加功能。
+> 使用Vue2.0开发的博客前端版块，另外后台代码在[另一个仓库](https://github.com/billyhoomm/blog-stage),在此主要写博客系统中关于技术细节的详细教程，欢迎star和改进本项目，我将会持续更新和增加新功能。
 
 
 ## 项目组成：
@@ -169,5 +169,7 @@ new attachFastClick(document.body);
 
 这个Backend API只是接管和全局相关的api比如config获取、公共数据等。下图是
 [vuex数据流](http://vuex.vuejs.org/zh-cn/data-flow.html)
+
+> 另外本项目基于[此处](https://github.com/xiangsongtao/X-SONGTAO-VUE)，主要作了样式以及功能添加和修改
 
 > 没介绍的细节后续会继续更新
