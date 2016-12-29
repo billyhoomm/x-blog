@@ -1,6 +1,6 @@
 # Vue2.0-Blog-System
 
-> 使用Vue2.0开发的博客前端版块，本项目基于[此处](https://github.com/xiangsongtao/X-SONGTAO-VUE)，作了样式以及功能上的修改和定制，另外后台代码使用[原作者](https://github.com/xiangsongtao/X-SONGTAO),在此主要写博客系统中关于技术细节的详细教程，欢迎clone和改进本系统。
+> 使用Vue2.0开发的博客前端版块，本项目基于[此处](https://github.com/xiangsongtao/X-SONGTAO-VUE)，作了样式以及功能上的修改和定制，另外后台代码在[另一个仓库](https://github.com/billyhoomm/blog-stage),在此主要写博客系统中关于技术细节的详细教程，欢迎clone和改进本系统。
 
 
 ## 项目组成：
