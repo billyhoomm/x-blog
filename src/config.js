@@ -10,7 +10,7 @@ if (process.env.NODE_ENV === 'production') {
   };
 } else {
   CONFIG = {
-    url: "http://blog.billyh.cn",
+    url: "http://localhost:8080",
     //我的信息_id
     MY_INFO_ID: '5837eaa795661756b0bc9eb4',
     //我对对评论进行回复的信息
