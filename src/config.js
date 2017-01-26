@@ -4,15 +4,15 @@ let CONFIG;
 if (process.env.NODE_ENV === 'production') {
   CONFIG = {
     url: "http://blog.billyh.cn",
-    MY_INFO_ID: '5837eaa795661756b0bc9eb4',
+    MY_INFO_ID: '5867506c801ba8556386261c',
     MY: '博主',
     EMAIL: 'billyhoom@qq.com'
   };
 } else {
   CONFIG = {
-    url: "http://localhost:8080",
+    url: "http://blog.billyh.cn",
     //我的信息_id
-    MY_INFO_ID: '5837eaa795661756b0bc9eb4',
+    MY_INFO_ID: '5867506c801ba8556386261c',
     //我对对评论进行回复的信息
     MY: '博主',
     EMAIL: 'billyhoom@qq.com'

@@ -1,5 +1,42 @@
 /**
- * Description: action 是一种专门用来被 component 调用的函数。
+ * Description: actions主要是为了异步操作，在不进行异步操作的时候可以在组件中直接
+ 使用mutations进行状态管理
+ 组件中mutations:this.$store.commit('xxx',载荷)xxx是事件类型，并可传入载荷作为参数
+                 或者可以使用mapmutations辅助函数将组件中的method映射为store.commit
+                 调用
+                 -----组件中使用的辅助函数
+                 export default {
+                  methods: {
+                    ...mapMutations([
+                      'increment' // 映射 this.increment() 为 this.$store.commit('increment')
+                    ]),
+                    ...mapMutations({
+                      add: 'increment' // 映射 this.add() 为 this.$store.commit('increment')
+                    })
+                  }
+                }
+组件中actions:this.$store.dispatch('xxx')xxx是事件类型，并可传入载荷作为参数
+              或者可以使用mapActions 辅助函数将组件的 methods 映射为 store.dispatch 调用
+              -----组件中使用的辅助函数
+              export default {
+                methods: {
+                  ...mapActions([
+                    'increment' // 映射 this.increment() 为 this.$store.dispatch('increment')
+                  ]),
+                  ...mapActions({
+                    add: 'increment' // 映射 this.add() 为 this.$store.dispatch('increment')
+                  })
+                }
+              }
+
+              -----action的注册
+                actions: {
+                increment ({ commit },载荷) {
+                  commit('increment')  increment为mutations的事件类型
+                }
+              }
+              actions是先提交mutations，通过mutations改变全局状态，多此一步是因为actions内部
+              可以执行异步操作，而mutations必须同步执行
  */
 
 
