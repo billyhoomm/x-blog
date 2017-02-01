@@ -172,4 +172,4 @@ new attachFastClick(document.body);
 
 > 另外本项目基于[此处](https://github.com/xiangsongtao/X-SONGTAO-VUE)，主要作了样式以及功能添加和修改
 
-> 没介绍的细节后续会继续更新
+> 没介绍的细节后续会继续更新。。。
