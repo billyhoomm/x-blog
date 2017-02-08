@@ -855,7 +855,7 @@
       getArticleTop: function (topNum) {
         const _this = this;
         /**
-         * 使用环境判断 userAgent(当前浏览器和版本de) 如果不是mobile则搜索top榜单
+         * 使用环境判断 userAgent(当前浏览器和版本) 如果不是mobile则搜索top榜单
          * */
         if (!navigator.userAgent.match(/AppleWebKit.*Mobile.*/)) {
           GetArticleTop(topNum).then(function (data) {
