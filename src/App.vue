@@ -36,7 +36,7 @@
   });
 
   /**
-   * 时间格式化插件-过滤
+   * 时间格式化插件-过滤qi
    * */
   moment.locale('zh-cn')
   Vue.use(vueMoment);
