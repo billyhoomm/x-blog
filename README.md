@@ -170,6 +170,5 @@ new attachFastClick(document.body);
 这个Backend API只是接管和全局相关的api比如config获取、公共数据等。下图是
 [vuex数据流](http://vuex.vuejs.org/zh-cn/data-flow.html)
 
-> 另外本项目基于[此处](https://github.com/xiangsongtao/X-SONGTAO-VUE)，主要作了样式以及功能添加和修改
 
 > 没介绍的细节后续会继续更新。。。
