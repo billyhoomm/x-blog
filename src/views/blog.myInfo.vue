@@ -37,6 +37,7 @@
             </li>
           </ul>
         </section>
+      
         <section class="detail__sns hidden-xs">
           <!-- <a target="_blank" class="github text-shadow" href="https://github.com/xiangsongtao">
             Follow
@@ -50,6 +51,14 @@
             </li>
           </ul>
         </section>
+      </section>
+      <section class = "detail__3">
+        <ul class="tabs text-shadow">
+            <li>
+              <router-link :to="{ name: 'friends_link',query: { listType: 'latest' }}" activeClass="active" tag="a">朋友
+              </router-link>
+            </li>
+        </ul>
       </section>
     </section>
     <!--我的称述-->
@@ -297,6 +306,54 @@
           }
         }
       }
+      .detail__3 {
+         .tabs {
+            padding: 0;
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 1;
+            height: 26px;
+            transition: all ease 500ms;
+            &.active {
+              opacity: 0;
+              height: 0;
+              overflow: hidden;
+              padding: 0;
+            }
+            & > li {
+              margin: 0 3px;
+              width: 68px;
+              position: relative;
+              cursor: pointer;
+              box-sizing: border-box;
+              a {
+                display: block;
+                width: 68px;
+                line-height: 100%;
+                box-sizing: border-box;
+                transition: all .2s ease;
+                text-align: center;
+                font-size: 14px;
+                padding: 5px 0;
+                text-decoration: none;
+                color: inherit;
+                border: 1px solid transparent;
+              }
+              & > .active {
+                border: 1px solid #38b7ea;
+                background: transparent;
+                color: #38b7ea;
+                border-radius: 5px;
+              }
+            }
+
+            & :hover {
+              color: #38b7ea;
+            }
+          }
+      }
     }
     .mywords {
       align-items: center;
@@ -376,6 +433,14 @@
             }
           }
         }
+        .detail__3{
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          position:fixed;
+          bottom:10px;
+        }
       }
       .mywords {
         width: 0;
@@ -446,6 +511,15 @@
             }
           }
         }
+        .detail__3{
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+          align-items: center;
+          position:relative;
+          top:-27px;
+          left:10px;
+        }
       }
       .mywords {
         align-items: flex-start;
@@ -466,16 +540,40 @@
       }
     }
   }
-
   @include media("<=desktop_small") {
     .myinfo {
       height: 275px;
       .detail {
         padding: 45px 0 0 0;
         transition: all ease 500ms;
+        .detail__3{
+          position:relative;
+          top:-27px;
+          left:150px;
+        }
       }
       .mywords {
         padding: 0px 40px !important;
+      }
+    }
+  }
+  @include media(">tablet", "<=desktop_small"){
+    .myinfo {
+      .detail {
+        .detail__3{
+          position:relative;
+          top:-27px;
+          left:10px;
+        }
+      }
+    }
+  }
+   @include media("<=tablet"){
+    .myinfo {
+      .detail {
+        .detail__3{
+          display:none;
+        }
       }
     }
   }
