@@ -155,11 +155,8 @@
         isLoading: true,
       }
     },
-    methods: {
-
-    },
     components: {
-      noData, copyright, loading
+      noData, copyright
     }
   }
 </script>
