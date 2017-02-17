@@ -23,11 +23,9 @@
         </div>
       </div>
     </div>
-    <section class="copyright animated fadeIn" v-if="tagList.length>0">
+    <section class="copyright animated fadeIn">
       <copyright></copyright>
     </section>
-    <no-data v-if="!hasData && !isLoading"></no-data>
-    <loading v-if="!!isLoading" class="loading" :number=9></loading>
   </div>
 </template>
 <style scoped lang="scss">
@@ -145,7 +143,6 @@
 
 </style>
 <script type="text/javascript">
-  import noData from "../components/nodata.vue"
   import copyright from '../components/copyright.vue'
   export default{
     data: function () {
@@ -156,7 +153,7 @@
       }
     },
     components: {
-      noData, copyright
+      copyright
     }
   }
 </script>
