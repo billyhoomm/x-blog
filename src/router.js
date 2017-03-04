@@ -206,7 +206,7 @@ function _checkAuth() {
       // token有效,能进入
       store.dispatch('setLoginState', true)
       // 设置请求的token
-      Vue.http.headers.common['authorization'] = 'token' + authorization.token
+      Vue.http.headers.common['authorization'] = 'token ' + authorization.token
       resolve()
     } else {
       Vue.$localStorage.$delete('authorization')
