@@ -1,0 +1,59 @@
+@charset "UTF-8";
+// Base
+// -------------------------------
+
+$font-family-sans-serif:          'PingHei', 'PingFang SC', "Microsoft Yahei", 'Helvetica Neue', 'Helvetica', 'STHeitiSC-Light', 'Arial', sans-serif !default;
+//$font-family-sans-serif:          "Segoe UI", "Lucida Grande", Helvetica, "Microsoft YaHei", FreeSans, Arimo, "Droid Sans", "wenquanyi micro hei", "Hiragino Sans GB", "Hiragino Sans GB W3", Arial, sans-serif !default;
+//$font-family-sans-serif:          "Hiragino Sans GB", PingHei, "Helvetica Neue", Helvetica, Arial, Verdana, "Microsoft Yahei", sans-serif !default;
+$font-family-light-sans-serif:    $font-family-sans-serif !default;
+$font-family-serif:               $font-family-sans-serif !default;
+$font-family-monospace:           $font-family-sans-serif !default;
+
+$font-family-base:                $font-family-sans-serif !default;
+$font-size-base:                  14px !default;
+$font-size-large:                 18px !default;
+$font-size-small:                 11px !default;
+
+$line-height-base:                1.428571429 !default; // 20/14
+$line-height-computed:            floor($font-size-base * $line-height-base) !default; // ~20px
+$line-height-large:               1.33 !default;
+$line-height-small:               1.5 !default;
+
+$headings-font-family:            $font-family-base !default;
+$headings-font-weight:            500 !default;
+$headings-line-height:            1.2 !default;
+
+$base-background-color:           rgba(0,0,0,0.5) !default;
+$base-color:                      #000 !default;
+$base-theme-color:                      #38b7ea !default;
+$base-red-color: #dd0600 !default;
+$base-green-color: #37fe96 !default;
+$base-orange-color:                      #ff9700 !default;
+$base-theme-color-o:                      #ff9700 !default;
+$base-word-color:                      #565A5F !default;
+
+$border-bottom-dark: #6f6f6f;
+
+
+$link-color:                      #000 !default;
+$link-hover-color:                darken($link-color, 15%) !default;
+
+$content-padding:                 10px !default;
+
+$padding-base-vertical:           6px !default;
+$padding-base-horizontal:         12px !default;
+
+$padding-large-vertical:          10px !default;
+$padding-large-horizontal:        16px !default;
+
+$padding-small-vertical:          5px !default;
+$padding-small-horizontal:        10px !default;
+
+$border-radius-base:              4px !default;
+$border-radius-large:             6px !default;
+$border-radius-small:             3px !default;
+
+
+.blue {
+  color: #00b2e2;
+}
