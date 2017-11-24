@@ -1,7 +1,7 @@
-X-SONGTAO Blog项目
+Blog of billyhu
 ===
 
-> 这个是X-SONGTAO Blog项目的后端node框架，前端vue请查看[此仓库](https://github.com/xiangsongtao/X-SONGTAO-VUE)
+> 改版进行中
 
 
 项目起源
@@ -13,9 +13,6 @@ X-SONGTAO Blog项目
 
 项目第二版重写了60%的代码，至于为什么不用成熟的博客框架而自己写一个是因为我想练练手，将现在已掌握的技术用在博客中，在博客构建时也能遇到工作中遇不到的问题，另外再检查自己技术上的不足。与此同时，开博后希望自己每周至少一篇博文总结。
 
-**目前X-SONGTAO已上线，访问地址：[X-SONGTAO](http://xiangsongtao.com)**
-
-> 题外话: 问题能找到解决办法都不算难，希望在技术路上的你能沉着分析问题并面对各种挑战！
 
 
 项目结构
@@ -33,17 +30,6 @@ X-SONGTAO Blog项目
 |-app.js  
 |-package.json  
 ```
-
-项目框架
----
-
-X-SONGTAO使用的是MEAN框架（Mongodb+Express+Angular+Nodejs），这个是四种技术的组合。就我现在的能力也只掌握了40%，但是已经足够开发X-SONGTAO项目了。另外，因为Nodejs使用的是6.0.0+版本，因此后台我也是用了部分ES6语法。前台使用了babel的核心库（ES6的语法糖部分）。与此同时，前台代码压缩合并打码都已做到位，具体可以参考public/web_design/gulpfile.babel.js文件。
-
-
-项目如何启动
----
-
-这里主要讲述如何在你的本地启动X-SONGTAO项目。在本机开发的过程中遇到的问题真的很少，但是一部署到服务器，问题就出来了：域名解析、Nginx设置、FTP设置、Nodejs/Mongodb安装、数据库配置连接等问题接踵而至，不过这些问题分析下都能在网上找到解决办法，不算难。到目前为止，遇到的问题就都自己解决了，虽然多花点时间，也需要总结下，希望以后再遇到这类问题能再少花点时间！
 
 #### 环境配置
 
@@ -108,27 +94,6 @@ X-SONGTAO使用的是MEAN框架（Mongodb+Express+Angular+Nodejs），这个是�
   		}
 	}
 	```
-
-	
-
-
-8. public/web目录是最终生成好的spa目录，如果希望对X-SONGTAO进行二次修改，请在web_design进行操作，操作之前，也请安装好web_design目录下的package.json中的各类依赖。项目Gulp文为gulpfile.babel.js，执行DEVELOPMENT任务，访问localhost:8080就能访问到项目。
-
-
-
-
-参观者账号
----
-
-
-> 目前参观者账号能浏览整个网站的内容，但是不可以做增删改的操作
-
-
-```
-username:visitor
-password:visitor
-```
-
 
 
 
