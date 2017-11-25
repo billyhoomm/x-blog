@@ -97,7 +97,7 @@ router.post('/imgupload', multipartMiddleware, function (req, res, next) {
         let imgInfo = req.files.uploadImg;
         let arr = imgInfo.type.split('/');
         let suffix = arr[arr.length - 1];
-        let filename = `${Date.parse(new Date())}.${suffix}`;
+        let filename = `blogUploads/${Date.parse(new Date())}.${suffix}`;
 
         client.uploadFile(imgInfo.path, {key: filename}, function(err, result){
             if(err){
