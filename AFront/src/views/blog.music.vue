@@ -54,6 +54,150 @@
     <!--<audio src="http://172.20.10.3:8000/Koi.%20-%20Beirut.mp3" controls autoplay> </audio>-->
   </div>
 </template>
+
+<script type="text/javascript">
+  import Vue from 'vue'
+  import API from "../config";
+  import copyright from '../components/copyright.vue'
+  import {secondsConvert} from "../utils/filters.js";
+  Vue.filter('secondsConvert', secondsConvert);
+  import {mapState, mapActions} from 'vuex';
+  export default{
+    data(){
+      return {
+        clear: '',
+        musicList: API.musicList,
+      }
+    },
+    computed: {
+      ...mapState({
+        isPlaying: 'isPlaying',
+        isLoading: 'isLoading',
+        currentMusicInfo: 'currentMusicInfo',
+        MusicHandle: 'handle',
+        duration: 'duration',
+        rightNow: 'rightNow',
+        rightPercent: 'rightPercent',
+      }),
+    },
+    methods: {
+      ...mapActions({
+        setPlayingStatus: 'setPlayingStatus',
+        setMusicDuration: 'setMusicDuration',
+        setCurrentMusic: 'setCurrentMusic',
+        setLoadingStatus: 'setLoadingStatus',
+        setMusicRightNow: 'setMusicRightNow',
+      }),
+      /**
+       * music的控制在App.vue中,方便全局管理
+       * 只是展示与事件触发,通过vuex操作
+       * */
+      playCtrl(){
+        let _this = this;
+        _this.setPlayingStatus(!_this.isPlaying);
+        let currentid = _this.musicList.indexOf(_this.currentMusicInfo);
+        // _this.indexCtrl(currentid);
+        _this._start();
+      },
+      preCtrl(){
+        let _this = this;
+        let currentid = _this.musicList.indexOf(_this.currentMusicInfo);
+        let index;
+        if (currentid !== 0) {
+          index = currentid - 1;
+        } else {
+          index = _this.musicList.length - 1;
+        }
+        _this.indexCtrl(index);
+        _this.setPlayingStatus(true);
+      },
+      nextCtrl(){
+        let _this = this;
+        let currentid = _this.musicList.indexOf(_this.currentMusicInfo);
+        let index;
+        if (currentid !== (_this.musicList.length - 1)) {
+          index = currentid + 1;
+        } else {
+          index = 0;
+        }
+        _this.indexCtrl(index);
+        _this.setPlayingStatus(true);
+      },
+      // 从第几个开始
+      indexCtrl(index){
+        let _this = this;
+        _this._ended();
+        _this.setCurrentMusic(_this.musicList[index]);
+        _this._beforeStart();
+        _this._start();
+      },
+      _init(){
+        let _this = this;
+        _this.setCurrentMusic(_this.musicList[0]);
+        _this._beforeStart();
+        //_this._start();
+      },
+      //start之前的准备工作,比如清除上一个的播放数据
+      _beforeStart(){
+        let _this = this;
+        //监听播放完毕状态
+        _this.MusicHandle.addEventListener('ended', function () {
+          _this._ended();
+          _this.nextCtrl();
+          //console.log("ended")
+        });
+        //监听加载状态
+        _this.MusicHandle.addEventListener('canplay', function () {
+          console.log("music-canplay")
+          _this.setLoadingStatus(false);
+          _this.setMusicDuration(_this.MusicHandle.duration)
+        });
+        //开始请求数据
+        _this.MusicHandle.addEventListener('loadstart', function () {
+          console.log("music-loadstart")
+          _this.setLoadingStatus(true);
+        });
+        //开始请求数据
+        _this.MusicHandle.addEventListener('canplaythrough', function () {
+          console.log("music-canplaythrough")
+          _this.setLoadingStatus(false);
+        });
+      },
+      _start(){
+        let _this = this;
+        // 播放时间设置
+        _this.clear = setInterval(function () {
+          _this.setMusicRightNow(_this.MusicHandle.currentTime);
+        }, 500)
+      },
+      _ended(){
+        let _this = this;
+        clearInterval(_this.clear);
+        _this.setPlayingStatus(false);
+        _this.setMusicRightNow(0);
+      },
+    },
+    components: {
+      copyright
+    },
+    created: function () {
+      let _this = this;
+      /**
+       * music 初始化
+       * */
+      if (!_this.MusicHandle) {
+        _this._init()
+      }
+    },
+    mounted: function () {
+
+    }
+    ,
+  }
+
+
+</script>
+
 <style scoped lang="scss">
   //base
   @import "../theme/theme.scss";
@@ -453,145 +597,3 @@
     }
   }
 </style>
-<script type="text/javascript">
-  import Vue from 'vue'
-  import API from "../config";
-  import copyright from '../components/copyright.vue'
-  import {secondsConvert} from "../utils/filters.js";
-  Vue.filter('secondsConvert', secondsConvert);
-  import {mapState, mapActions} from 'vuex';
-  export default{
-    data(){
-      return {
-        clear: '',
-        musicList: API.musicList,
-      }
-    },
-    computed: {
-      ...mapState({
-        isPlaying: 'isPlaying',
-        isLoading: 'isLoading',
-        currentMusicInfo: 'currentMusicInfo',
-        MusicHandle: 'handle',
-        duration: 'duration',
-        rightNow: 'rightNow',
-        rightPercent: 'rightPercent',
-      }),
-    },
-    methods: {
-      ...mapActions({
-        setPlayingStatus: 'setPlayingStatus',
-        setMusicDuration: 'setMusicDuration',
-        setCurrentMusic: 'setCurrentMusic',
-        setLoadingStatus: 'setLoadingStatus',
-        setMusicRightNow: 'setMusicRightNow',
-      }),
-      /**
-       * music的控制在App.vue中,方便全局管理
-       * 只是展示与事件触发,通过vuex操作
-       * */
-      playCtrl(){
-        let _this = this;
-        _this.setPlayingStatus(!_this.isPlaying);
-        let currentid = _this.musicList.indexOf(_this.currentMusicInfo);
-        // _this.indexCtrl(currentid);
-        _this._start();
-      },
-      preCtrl(){
-        let _this = this;
-        let currentid = _this.musicList.indexOf(_this.currentMusicInfo);
-        let index;
-        if (currentid !== 0) {
-          index = currentid - 1;
-        } else {
-          index = _this.musicList.length - 1;
-        }
-        _this.indexCtrl(index);
-        _this.setPlayingStatus(true);
-      },
-      nextCtrl(){
-        let _this = this;
-        let currentid = _this.musicList.indexOf(_this.currentMusicInfo);
-        let index;
-        if (currentid !== (_this.musicList.length - 1)) {
-          index = currentid + 1;
-        } else {
-          index = 0;
-        }
-        _this.indexCtrl(index);
-        _this.setPlayingStatus(true);
-      },
-      // 从第几个开始
-      indexCtrl(index){
-        let _this = this;
-        _this._ended();
-        _this.setCurrentMusic(_this.musicList[index]);
-        _this._beforeStart();
-        _this._start();
-      },
-      _init(){
-        let _this = this;
-        _this.setCurrentMusic(_this.musicList[0]);
-        _this._beforeStart();
-        //_this._start();
-      },
-      //start之前的准备工作,比如清除上一个的播放数据
-      _beforeStart(){
-        let _this = this;
-        //监听播放完毕状态
-        _this.MusicHandle.addEventListener('ended', function () {
-          _this._ended();
-          _this.nextCtrl();
-          //console.log("ended")
-        });
-        //监听加载状态
-        _this.MusicHandle.addEventListener('canplay', function () {
-          console.log("music-canplay")
-          _this.setLoadingStatus(false);
-          _this.setMusicDuration(_this.MusicHandle.duration)
-        });
-        //开始请求数据
-        _this.MusicHandle.addEventListener('loadstart', function () {
-          console.log("music-loadstart")
-          _this.setLoadingStatus(true);
-        });
-        //开始请求数据
-        _this.MusicHandle.addEventListener('canplaythrough', function () {
-          console.log("music-canplaythrough")
-          _this.setLoadingStatus(false);
-        });
-      },
-      _start(){
-        let _this = this;
-        // 播放时间设置
-        _this.clear = setInterval(function () {
-          _this.setMusicRightNow(_this.MusicHandle.currentTime);
-        }, 500)
-      },
-      _ended(){
-        let _this = this;
-        clearInterval(_this.clear);
-        _this.setPlayingStatus(false);
-        _this.setMusicRightNow(0);
-      },
-    },
-    components: {
-      copyright
-    },
-    created: function () {
-      let _this = this;
-      /**
-       * music 初始化
-       * */
-      if (!_this.MusicHandle) {
-        _this._init()
-      }
-    },
-    mounted: function () {
-
-    }
-    ,
-  }
-
-
-</script>

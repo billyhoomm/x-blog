@@ -67,6 +67,105 @@
     </section>
   </div>
 </template>
+
+<script type="text/javascript">
+
+  import Vue from "vue";
+  import {addImgPrefix} from "../utils/filters.js";
+  import {GetMyInfo} from '../api/api_myinfo'
+  import {mapState, mapActions} from 'vuex';
+  // Vue.directive('err-src', {
+  //   bind: function () {
+  //     let scope = this;
+  //     let element = $(scope.el);
+  //     let errSrc = scope.expression;
+  //     element.css({"opacity": 0});
+  //     var emptyTransparent = "data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==";
+  //     //如果失败
+  //     element.on('error', function () {
+  //       if (!!errSrc) {
+  //         element.attr('src', errSrc);
+  //       } else {
+  //         element.attr('src', emptyTransparent);
+  //       }
+  //       element.css({"opacity": 1, "transition": "opacity ease 300ms"});
+  //       element.off()
+  //     });
+  //     //如果成功
+  //     element.on('load', function () {
+  //       element.css({"opacity": 1, "transition": "opacity ease 300ms"});
+  //     });
+  //     // 准备工作
+  //     // 例如，添加事件处理器或只需要运行一次的高耗任务
+  //   },
+  //   update: function (newValue, oldValue) {
+  //     // 值更新时的工作
+  //     // 也会以初始值为参数调用一次
+  //   },
+  //   unbind: function () {
+  //     // 清理工作
+  //     // 例如，删除 bind() 添加的事件监听器
+  //   }
+  // });
+  export default {
+    //replace: true,
+    data: function () {
+      return {
+        myinfo: {},
+        socialImg: '',
+      }
+    },
+    watch: {
+      // 类添加策略，用于显示我的信息
+      isShowMyWords: function (val) {
+        var $myinfo = $("#myinfo")
+        if (val) {
+          //true
+          $myinfo.addClass('showMyWords showMyWords-active')
+        } else {
+          //false
+          $myinfo.removeClass('showMyWords-active');
+        }
+      }
+    },
+    computed: {
+      ...mapState({
+        isShowMyWords: 'isShowMyWords',
+      }),
+      //addImgPrefix,
+    },
+    methods: {
+      imgPrefix: function (val) {
+        return addImgPrefix(val)
+      },
+      showSocialImg: function (url) {
+        this.setSocialImgUrl(url)
+      },
+      ...mapActions({
+        // 注意在这里你需要 `getMyInfo` 函数本身而不是它的执行结果 'getMyInfo()'
+        setMyWordStatus: 'setMyWordStatus',//toggle我的个人称述显影状态,因为其他组件可能需要这个信息
+        setSocialImgUrl: 'setSocialImgUrl',//更改社交的二维码图片
+      }),
+    },
+    created: function () {
+      const scope = this;
+      GetMyInfo().then((data)=> {
+        scope.myinfo = data;
+      });
+    },
+    mounted: function () {
+      var $myinfo = $("#myinfo")
+      var _this = this;
+      $myinfo.on('transitionend',function (event) {
+        if(event.target.id === 'myinfo' && !_this.isShowMyWords){
+          $myinfo.removeClass('showMyWords');
+        }
+      })
+    }
+  }
+
+</script>
+
 <style scoped lang="scss">
   @import "../theme/theme.scss";
 
@@ -640,100 +739,3 @@
   }
 
 </style>
-<script type="text/javascript">
-
-  import Vue from "vue";
-  import {addImgPrefix} from "../utils/filters.js";
-  import {GetMyInfo} from '../api/api_myinfo'
-  import {mapState, mapActions} from 'vuex';
-  // Vue.directive('err-src', {
-  //   bind: function () {
-  //     let scope = this;
-  //     let element = $(scope.el);
-  //     let errSrc = scope.expression;
-  //     element.css({"opacity": 0});
-  //     var emptyTransparent = "data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==";
-  //     //如果失败
-  //     element.on('error', function () {
-  //       if (!!errSrc) {
-  //         element.attr('src', errSrc);
-  //       } else {
-  //         element.attr('src', emptyTransparent);
-  //       }
-  //       element.css({"opacity": 1, "transition": "opacity ease 300ms"});
-  //       element.off()
-  //     });
-  //     //如果成功
-  //     element.on('load', function () {
-  //       element.css({"opacity": 1, "transition": "opacity ease 300ms"});
-  //     });
-  //     // 准备工作
-  //     // 例如，添加事件处理器或只需要运行一次的高耗任务
-  //   },
-  //   update: function (newValue, oldValue) {
-  //     // 值更新时的工作
-  //     // 也会以初始值为参数调用一次
-  //   },
-  //   unbind: function () {
-  //     // 清理工作
-  //     // 例如，删除 bind() 添加的事件监听器
-  //   }
-  // });
-  export default {
-    //replace: true,
-    data: function () {
-      return {
-        myinfo: {},
-        socialImg: '',
-      }
-    },
-    watch: {
-      // 类添加策略，用于显示我的信息
-      isShowMyWords: function (val) {
-        var $myinfo = $("#myinfo")
-        if (val) {
-          //true
-          $myinfo.addClass('showMyWords showMyWords-active')
-        } else {
-          //false
-          $myinfo.removeClass('showMyWords-active');
-        }
-      }
-    },
-    computed: {
-      ...mapState({
-        isShowMyWords: 'isShowMyWords',
-      }),
-      //addImgPrefix,
-    },
-    methods: {
-      imgPrefix: function (val) {
-        return addImgPrefix(val)
-      },
-      showSocialImg: function (url) {
-        this.setSocialImgUrl(url)
-      },
-      ...mapActions({
-        // 注意在这里你需要 `getMyInfo` 函数本身而不是它的执行结果 'getMyInfo()'
-        setMyWordStatus: 'setMyWordStatus',//toggle我的个人称述显影状态,因为其他组件可能需要这个信息
-        setSocialImgUrl: 'setSocialImgUrl',//更改社交的二维码图片
-      }),
-    },
-    created: function () {
-      const scope = this;
-      GetMyInfo().then((data)=> {
-        scope.myinfo = data;
-      });
-    },
-    mounted: function () {
-      var $myinfo = $("#myinfo")
-      var _this = this;
-      $myinfo.on('transitionend',function (event) {
-        if(event.target.id === 'myinfo' && !_this.isShowMyWords){
-          $myinfo.removeClass('showMyWords');
-        }
-      })
-    }
-  }
-
-</script>

@@ -123,6 +123,148 @@
     </div>
   </div>
 </template>
+
+<script type="text/javascript">
+  import Vue from "vue";
+  import _ from "lodash";
+  import {
+    GetMyInfoWithOriginal,
+    PostMyInfo,
+  } from '../api/api_myinfo'
+  import API from '../config'
+  import {ChangePassword} from '../api/api_auth'
+  import copyright from '../components/copyright.vue'
+  import {addImgPrefix} from "../utils/filters.js";
+  import {setLoginState} from '../vuex/actions'
+
+  import {ImageUpload} from "../api/api_upload";
+  import {mapActions} from 'vuex';
+
+
+  module.exports = {
+    data: function () {
+      return {
+        myInfo: {},
+        textState: 'Submit',
+        isSuccess: false,
+      }
+    },
+    computed:{
+      loginInInfo: function () {
+        if(!!this.myInfo && !!this.myInfo.login_info){
+          return _.orderBy(this.myInfo.login_info.slice(0, 15), ['login_time'],['desc'])
+        }else{
+          return []
+        }
+      }
+    },
+    watch: {
+      myInfo: {
+        handler: function (val) {
+          this.save();
+        },
+        deep: true,
+      }
+    },
+    methods: {
+      ...mapActions({
+        setLoginState: 'setLoginState'
+      }),
+      addImgPrefix: function (val) {
+        return addImgPrefix(val)
+      },
+      save: function () {
+        const _this = this;
+        let params = {
+          _id: _this.myInfo._id,
+          full_name: _this.myInfo.full_name,
+          position: _this.myInfo.position,
+          address: _this.myInfo.address,
+          motto: _this.myInfo.motto,
+          personal_state: _this.myInfo.personal_state,
+          img_url: _this.myInfo.img_url
+        };
+        PostMyInfo(params).then((data)=> {
+          _this.isSuccess = true;
+          setTimeout(function () {
+            _this.isSuccess = false;
+          }, 1000);
+        })
+      },
+      //修改登录信息
+      changeAuthorizationInfo: function () {
+        const _this = this;
+        if (!_this.myInfo.username) {
+          alert('用户名无效');
+          return false;
+        }
+        if (!_this.myInfo.password) {
+          alert('旧密码无效');
+          return false;
+        }
+        if (!_this.myInfo.new_password) {
+          alert('新密码无效');
+          return false;
+        }
+        let params = {
+          _id: _this.myInfo._id,
+          username: _this.myInfo.username,
+          password: _this.myInfo.password,
+          new_password: _this.myInfo.new_password,
+        };
+        ChangePassword(params).then((data)=> {
+          _this.textState = '成功!';
+          //密码修改成功,需要提示用户重新登录,自动退出!
+          alert("给出提示,xxs后请从新登陆")
+          setTimeout(function () {
+            _this.$localStorage.$reset();
+            _this.setLoginState(false);//设置全局登录状态
+            _this.$router.go({
+              name: 'login'
+            });//跳转
+
+          }, 1200, true);
+        }, ()=> {
+          _this.textState = '失败!';
+        })
+      },
+    },
+    created: function () {
+      const _this = this;
+      /**
+       * 获取原始个人信息
+       * */
+      GetMyInfoWithOriginal().then((data)=> {
+        _this.myInfo = data;
+      }, (code)=> {
+        console.log("code:" + code)
+      })
+    },
+    mounted: function () {
+      const _this = this;
+      /**
+       * 1. 选择图片,获得filer信息
+       * */
+      $("#imgUpload").change(function (e) {
+        // 文件句柄
+        var file = e.target.files[0];
+        // 只处理图片
+        if (!file.type.match('image.*')) {
+          return null;
+        }
+        ImageUpload(file).then(function (imageName) {
+          _this.myInfo.img_url = imageName;
+        }, function () {
+          alert("upload error");
+        })
+      })
+    },
+    components: {
+      copyright
+    }
+  }
+</script>
+
 <style scoped lang="scss">
   //base
   @import "../theme/theme.scss";
@@ -356,143 +498,3 @@
 
 
 </style>
-<script type="text/javascript">
-  import Vue from "vue";
-  import _ from "lodash";
-  import {
-    GetMyInfoWithOriginal,
-    PostMyInfo,
-  } from '../api/api_myinfo'
-  import API from '../config'
-  import {ChangePassword} from '../api/api_auth'
-  import copyright from '../components/copyright.vue'
-  import {addImgPrefix} from "../utils/filters.js";
-  import {setLoginState} from '../vuex/actions'
-
-  import {ImageUpload} from "../api/api_upload";
-  import {mapActions} from 'vuex';
-
-
-  module.exports = {
-    data: function () {
-      return {
-        myInfo: {},
-        textState: 'Submit',
-        isSuccess: false,
-      }
-    },
-    computed:{
-      loginInInfo: function () {
-        if(!!this.myInfo && !!this.myInfo.login_info){
-          return _.orderBy(this.myInfo.login_info.slice(0, 15), ['login_time'],['desc'])
-        }else{
-          return []
-        }
-      }
-    },
-    watch: {
-      myInfo: {
-        handler: function (val) {
-          this.save();
-        },
-        deep: true,
-      }
-    },
-    methods: {
-      ...mapActions({
-        setLoginState: 'setLoginState'
-      }),
-      addImgPrefix: function (val) {
-        return addImgPrefix(val)
-      },
-      save: function () {
-        const _this = this;
-        let params = {
-          _id: _this.myInfo._id,
-          full_name: _this.myInfo.full_name,
-          position: _this.myInfo.position,
-          address: _this.myInfo.address,
-          motto: _this.myInfo.motto,
-          personal_state: _this.myInfo.personal_state,
-          img_url: _this.myInfo.img_url
-        };
-        PostMyInfo(params).then((data)=> {
-          _this.isSuccess = true;
-          setTimeout(function () {
-            _this.isSuccess = false;
-          }, 1000);
-        })
-      },
-      //修改登录信息
-      changeAuthorizationInfo: function () {
-        const _this = this;
-        if (!_this.myInfo.username) {
-          alert('用户名无效');
-          return false;
-        }
-        if (!_this.myInfo.password) {
-          alert('旧密码无效');
-          return false;
-        }
-        if (!_this.myInfo.new_password) {
-          alert('新密码无效');
-          return false;
-        }
-        let params = {
-          _id: _this.myInfo._id,
-          username: _this.myInfo.username,
-          password: _this.myInfo.password,
-          new_password: _this.myInfo.new_password,
-        };
-        ChangePassword(params).then((data)=> {
-          _this.textState = '成功!';
-          //密码修改成功,需要提示用户重新登录,自动退出!
-          alert("给出提示,xxs后请从新登陆")
-          setTimeout(function () {
-            _this.$localStorage.$reset();
-            _this.setLoginState(false);//设置全局登录状态
-            _this.$router.go({
-              name: 'login'
-            });//跳转
-
-          }, 1200, true);
-        }, ()=> {
-          _this.textState = '失败!';
-        })
-      },
-    },
-    created: function () {
-      const _this = this;
-      /**
-       * 获取原始个人信息
-       * */
-      GetMyInfoWithOriginal().then((data)=> {
-        _this.myInfo = data;
-      }, (code)=> {
-        console.log("code:" + code)
-      })
-    },
-    mounted: function () {
-      const _this = this;
-      /**
-       * 1. 选择图片,获得filer信息
-       * */
-      $("#imgUpload").change(function (e) {
-        // 文件句柄
-        var file = e.target.files[0];
-        // 只处理图片
-        if (!file.type.match('image.*')) {
-          return null;
-        }
-        ImageUpload(file).then(function (imageName) {
-          _this.myInfo.img_url = imageName;
-        }, function () {
-          alert("upload error");
-        })
-      })
-    },
-    components: {
-      copyright
-    }
-  }
-</script>

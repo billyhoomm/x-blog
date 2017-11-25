@@ -7,6 +7,7 @@ let bodyParser = require('body-parser');
 var os = require('os');
 var http = require('http');
 var cors = require('cors');
+var history = require('connect-history-api-fallback');
 
 
 // 引入 mongoose 配置文件,执行配置文件中的函数，以实现数据库的配置和 Model 的创建等
@@ -20,6 +21,7 @@ let api = require('./routes/api.routes.js');
 
 let app = express();
 app.use(cors());
+app.use(history())
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');

@@ -17,6 +17,28 @@
     </section>
   </div>
 </template>
+
+<script type="text/javascript">
+  import copyright from "../components/copyright.vue";
+  import {mapState} from 'vuex';
+  export default{
+    data(){
+      return {
+        msg: 'hello vue'
+      }
+    },
+    computed: {
+      ...mapState({
+        isShowBigAdmin: 'isShowBigAdmin',
+      }),
+    },
+    components: {
+      copyright
+    }
+  }
+
+</script>
+
 <style scoped lang="scss">
   @import "../theme/theme.scss";
   //后台整个页面的盒子
@@ -96,23 +118,3 @@
     }
   }
 </style>
-<script type="text/javascript">
-  import copyright from "../components/copyright.vue";
-  import {mapState} from 'vuex';
-  export default{
-    data(){
-      return {
-        msg: 'hello vue'
-      }
-    },
-    computed: {
-      ...mapState({
-        isShowBigAdmin: 'isShowBigAdmin',
-      }),
-    },
-    components: {
-      copyright
-    }
-  }
-
-</script>

@@ -22,6 +22,129 @@
     </div>
   </div>
 </template>
+
+<script type="text/javascript">
+
+  import Vue from 'vue';
+  import Toast from 'Toast';
+  import {GetArticleComments, SendComment} from "../api/api_comment"
+  import {mapState,mapActions} from 'vuex';
+
+  export default{
+    data(){
+      return {
+        content: null,//评论信息
+        name: null,//评论人名称
+        email: null,//评论人邮箱
+      }
+    },
+    computed:{
+      ...mapState({
+        hasCommentInfo: 'hasCommentInfo',
+      }),
+    },
+    props: {
+      //文章id
+      articleId: {
+        type: String,
+        require: true,
+      },
+      //前置id，如果是根评论则是文章id，如果是子评论则为父评论的id
+      preId: {
+        type: String,
+        require: true,
+      },
+    },
+    methods: {
+      ...mapActions({
+        setCommentInfoStatus: 'setCommentInfoStatus'
+      }),
+      submit: function () {
+        let _this = this;
+        if (!_this.hasCommentInfo) {
+          if (!_this.name) {
+            Toast({
+              message: '请输入昵称', iconClass: 'fa fa-warning',
+              position: 'center',
+              duration: 3000
+            });
+            return
+          }
+          if (!_this.email) {
+            Toast({
+              message: '请输入邮箱', iconClass: 'fa fa-warning',
+              position: 'center',
+              duration: 3000
+            });
+            return
+          }
+          if (!/^\w+@[1-9a-z]+(\.[a-z]+){1,3}$/.test(_this.email)) {
+            Toast({
+              message: '邮箱格式输入错误',
+              iconClass: 'fa fa-warning',
+              position: 'center',
+              duration: 3000
+            });
+            return
+          }
+          _this.$localStorage.$set({
+            commentInfo: {
+              name: _this.name,
+              email: _this.email
+            }
+          });
+          _this.setCommentInfoStatus(true);
+        }
+        let commentInfo = _this.$localStorage.commentInfo
+        let params = {
+          article_id: _this.articleId,
+          pre_id: _this.preId,
+          next_id: [],
+          name: commentInfo.name,
+          email: commentInfo.email,
+          time: new Date(),
+          content: _this.content,
+          state: false,
+          isIReplied: false
+        }
+
+        SendComment(params).then(()=> {
+          Toast({
+            message: '评论成功，正在审核',
+            iconClass: 'fa fa-check',
+            position: 'center',
+            duration: 3000
+          });
+          this.toggle = !this.toggle;
+          _this.content = '';
+        }, (error)=> {
+          Toast({
+            message: '评论失败',
+            iconClass: 'fa fa-check',
+            position: 'center',
+            duration: 3000
+          });
+        });
+      }
+    },
+    created: function () {
+      var _this = this;
+      if(!_this.hasCommentInfo){
+        /**
+         * 获取游客昵称及邮箱,并设置input显示与否
+         * */
+        let commentInfo = _this.$localStorage.commentInfo
+        if (!!commentInfo && !!commentInfo.name && !!commentInfo.email) {
+          _this.setCommentInfoStatus(true);
+          _this.name = commentInfo.name;
+          _this.email = commentInfo.email;
+        }
+      }
+    },
+  }
+
+</script>
+
 <style scoped lang="scss">
   //base
   @import "../theme/theme.scss";
@@ -175,124 +298,3 @@
   }
 
 </style>
-<script type="text/javascript">
-
-  import Vue from 'vue';
-  import Toast from 'Toast';
-  import {GetArticleComments, SendComment} from "../api/api_comment"
-  import {mapState,mapActions} from 'vuex';
-
-  export default{
-    data(){
-      return {
-        content: null,//评论信息
-        name: null,//评论人名称
-        email: null,//评论人邮箱
-      }
-    },
-    computed:{
-      ...mapState({
-        hasCommentInfo: 'hasCommentInfo',
-      }),
-    },
-    props: {
-      //文章id
-      articleId: {
-        type: String,
-        require: true,
-      },
-      //前置id，如果是根评论则是文章id，如果是子评论则为父评论的id
-      preId: {
-        type: String,
-        require: true,
-      },
-    },
-    methods: {
-      ...mapActions({
-        setCommentInfoStatus: 'setCommentInfoStatus'
-      }),
-      submit: function () {
-        let _this = this;
-        if (!_this.hasCommentInfo) {
-          if (!_this.name) {
-            Toast({
-              message: '请输入昵称', iconClass: 'fa fa-warning',
-              position: 'center',
-              duration: 3000
-            });
-            return
-          }
-          if (!_this.email) {
-            Toast({
-              message: '请输入邮箱', iconClass: 'fa fa-warning',
-              position: 'center',
-              duration: 3000
-            });
-            return
-          }
-          if (!/^\w+@[1-9a-z]+(\.[a-z]+){1,3}$/.test(_this.email)) {
-            Toast({
-              message: '邮箱格式输入错误',
-              iconClass: 'fa fa-warning',
-              position: 'center',
-              duration: 3000
-            });
-            return
-          }
-          _this.$localStorage.$set({
-            commentInfo: {
-              name: _this.name,
-              email: _this.email
-            }
-          });
-          _this.setCommentInfoStatus(true);
-        }
-        let commentInfo = _this.$localStorage.commentInfo
-        let params = {
-          article_id: _this.articleId,
-          pre_id: _this.preId,
-          next_id: [],
-          name: commentInfo.name,
-          email: commentInfo.email,
-          time: new Date(),
-          content: _this.content,
-          state: false,
-          isIReplied: false
-        }
-
-        SendComment(params).then(()=> {
-          Toast({
-            message: '评论成功，正在审核',
-            iconClass: 'fa fa-check',
-            position: 'center',
-            duration: 3000
-          });
-          this.toggle = !this.toggle;
-          _this.content = '';
-        }, (error)=> {
-          Toast({
-            message: '评论失败',
-            iconClass: 'fa fa-check',
-            position: 'center',
-            duration: 3000
-          });
-        });
-      }
-    },
-    created: function () {
-      var _this = this;
-      if(!_this.hasCommentInfo){
-        /**
-         * 获取游客昵称及邮箱,并设置input显示与否
-         * */
-        let commentInfo = _this.$localStorage.commentInfo
-        if (!!commentInfo && !!commentInfo.name && !!commentInfo.email) {
-          _this.setCommentInfoStatus(true);
-          _this.name = commentInfo.name;
-          _this.email = commentInfo.email;
-        }
-      }
-    },
-  }
-
-</script>

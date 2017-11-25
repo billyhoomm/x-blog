@@ -46,6 +46,89 @@
     </section>
   </div>
 </template>
+
+<script type="text/javascript">
+  import API from "../config.js"
+  import noData from "../components/nodata.vue"
+  import loading from "../components/loading.vue"
+  import copyright from '../components/copyright.vue'
+  import {GetArticleListForFrontEnd} from "../api/api_article"
+  import Vue from 'vue'
+  import InfiniteScroll from 'InfiniteScroll';
+  Vue.use(InfiniteScroll);
+
+  export default{
+    data: function () {
+      return {
+        isLoading: true,//loading提示
+        articleList: [],
+        hasData: true,//hasData提示
+        pageNow: 0,
+        infiniteDisabled: false,//是否禁用无限加载
+      }
+    },
+    methods: {
+      loadMore() {
+        let _this = this;
+        _this.isLoading = true;
+        console.log('loading')
+        _this.getArticleList();
+      },
+      getArticleList: function () {
+        let _this = this;
+
+        /**
+         * 文章列表会根据
+         * "最新-latest"、"标签筛选-tagList"进行区分,
+         * 不同的type进行不同的url搜索
+         * */
+        console.log('get article list');
+        let listType = _this.$route.query.listType;
+        let url;
+        switch (listType) {
+          case 'latest':
+            url = API.newUpdateArticle.replace("from", parseInt(_this.pageNow)).replace("to", parseInt(API.ArticleNum));
+            break;
+          case 'tagList':
+            url = API.getArticlesWithTagId.replace("from", parseInt(_this.pageNow)).replace("to", parseInt(API.ArticleNum)).replace('id', _this.$route.query.tagId);
+            break;
+        }
+        // 数据请求根据url参数会发生改变,故get时传入url
+        GetArticleListForFrontEnd(url).then(function (data) {
+          if (data.length > 0) {
+            _this.articleList = _this.articleList.concat(data);
+            _this.pageNow += parseInt(API.ArticleNum);
+            if (data.length == API.ArticleNum) {
+              _this.infiniteDisabled = false;
+            } else {
+              _this.infiniteDisabled = true;
+              _this.isLoading = false;
+            }
+          } else {
+            _this.infiniteDisabled = true;
+            _this.isLoading = false;
+          }
+        }, function () {
+          _this.hasData = false;
+        }).then(function () {
+          _this.articleList.length === 0 ? (_this.hasData = false, _this.isLoading = false) : ('');
+          // Indicator.close();
+        })
+      },
+    },
+    created: function () {
+      const _this = this;
+      // $(window).scrollTop(0);// 滚到顶部
+      //_this.getArticleList();
+    },
+    destroyed: function () {
+    },
+    components: {
+      noData, copyright, loading,
+    },
+  }
+</script>
+
 <style scoped lang="scss">
   @import "../theme/theme.scss";
 
@@ -223,84 +306,3 @@
   }
 
 </style>
-<script type="text/javascript">
-  import API from "../config.js"
-  import noData from "../components/nodata.vue"
-  import loading from "../components/loading.vue"
-  import copyright from '../components/copyright.vue'
-  import {GetArticleListForFrontEnd} from "../api/api_article"
-  import Vue from 'vue'
-  import InfiniteScroll from 'InfiniteScroll';
-  Vue.use(InfiniteScroll);
-
-  export default{
-    data: function () {
-      return {
-        isLoading: true,//loading提示
-        articleList: [],
-        hasData: true,//hasData提示
-        pageNow: 0,
-        infiniteDisabled: false,//是否禁用无限加载
-      }
-    },
-    methods: {
-      loadMore() {
-        let _this = this;
-        _this.isLoading = true;
-        console.log('loading')
-        _this.getArticleList();
-      },
-      getArticleList: function () {
-        let _this = this;
-
-        /**
-         * 文章列表会根据
-         * "最新-latest"、"标签筛选-tagList"进行区分,
-         * 不同的type进行不同的url搜索
-         * */
-        console.log('get article list');
-        let listType = _this.$route.query.listType;
-        let url;
-        switch (listType) {
-          case 'latest':
-            url = API.newUpdateArticle.replace("from", parseInt(_this.pageNow)).replace("to", parseInt(API.ArticleNum));
-            break;
-          case 'tagList':
-            url = API.getArticlesWithTagId.replace("from", parseInt(_this.pageNow)).replace("to", parseInt(API.ArticleNum)).replace('id', _this.$route.query.tagId);
-            break;
-        }
-        // 数据请求根据url参数会发生改变,故get时传入url
-        GetArticleListForFrontEnd(url).then(function (data) {
-          if (data.length > 0) {
-            _this.articleList = _this.articleList.concat(data);
-            _this.pageNow += parseInt(API.ArticleNum);
-            if (data.length == API.ArticleNum) {
-              _this.infiniteDisabled = false;
-            } else {
-              _this.infiniteDisabled = true;
-              _this.isLoading = false;
-            }
-          } else {
-            _this.infiniteDisabled = true;
-            _this.isLoading = false;
-          }
-        }, function () {
-          _this.hasData = false;
-        }).then(function () {
-          _this.articleList.length === 0 ? (_this.hasData = false, _this.isLoading = false) : ('');
-          // Indicator.close();
-        })
-      },
-    },
-    created: function () {
-      const _this = this;
-      // $(window).scrollTop(0);// 滚到顶部
-      //_this.getArticleList();
-    },
-    destroyed: function () {
-    },
-    components: {
-      noData, copyright, loading,
-    },
-  }
-</script>

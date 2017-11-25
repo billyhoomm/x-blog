@@ -47,75 +47,7 @@
 
   </div>
 </template>
-<style scoped lang="scss">
-  //base
-  @import "../theme/theme.scss";
 
-  * {
-    /*outline:1px solid #3d3d3d;*/
-  }
-
-  .dashboard {
-    overflow: hidden;
-    height: 100%;
-    min-height: 500px;
-    .title {
-      width: 100%;
-      color: #fff;
-      margin-bottom: 30px;
-    }
-
-  }
-
-  .main {
-    color: #fff;
-    .main--title {
-      color: $base-theme-color;
-    }
-    .main--statistic {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 35px;
-      .statisticEach {
-        text-align: center;
-        color: #fff;
-        flex: 1;
-        border-right: 1px solid #fff;
-        border-left: 1px solid transparent;
-        &:nth-last-child(1) {
-          border-right: 4px solid transparent;
-        }
-        h2 {
-          margin-bottom: 0;
-          font-size: 20px;
-        }
-        p {
-          color: $base-theme-color;
-          font-size: 35px;
-        }
-      }
-
-      .statistic--chart {
-        width: 100%;
-        height: 400px;
-        border-radius: 5px;
-        padding: 8px;
-        box-sizing: border-box;
-        background: #fff !important;
-      }
-      .statistic--map {
-        width: 100%;
-        height: 500px;
-        padding: 8px;
-        border-radius: 5px;
-        box-sizing: border-box;
-        background: #fff !important;
-      }
-    }
-  }
-
-</style>
 <script type="text/javascript">
   import Vue from "vue";
   import copyright from '../components/copyright.vue'
@@ -304,3 +236,73 @@
 
 
 </script>
+
+<style scoped lang="scss">
+  //base
+  @import "../theme/theme.scss";
+
+  * {
+    /*outline:1px solid #3d3d3d;*/
+  }
+
+  .dashboard {
+    overflow: hidden;
+    height: 100%;
+    min-height: 500px;
+    .title {
+      width: 100%;
+      color: #fff;
+      margin-bottom: 30px;
+    }
+
+  }
+
+  .main {
+    color: #fff;
+    .main--title {
+      color: $base-theme-color;
+    }
+    .main--statistic {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 35px;
+      .statisticEach {
+        text-align: center;
+        color: #fff;
+        flex: 1;
+        border-right: 1px solid #fff;
+        border-left: 1px solid transparent;
+        &:nth-last-child(1) {
+          border-right: 4px solid transparent;
+        }
+        h2 {
+          margin-bottom: 0;
+          font-size: 20px;
+        }
+        p {
+          color: $base-theme-color;
+          font-size: 35px;
+        }
+      }
+
+      .statistic--chart {
+        width: 100%;
+        height: 400px;
+        border-radius: 5px;
+        padding: 8px;
+        box-sizing: border-box;
+        background: #fff !important;
+      }
+      .statistic--map {
+        width: 100%;
+        height: 500px;
+        padding: 8px;
+        border-radius: 5px;
+        box-sizing: border-box;
+        background: #fff !important;
+      }
+    }
+  }
+
+</style>

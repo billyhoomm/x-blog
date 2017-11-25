@@ -162,6 +162,199 @@
   </div>
 
 </template>
+
+<script type="text/javascript">
+  import API from "../config.js"
+  import {GetArticleById, GetArticleTop} from "../api/api_article"
+  import {GetArticleComments, SendComment} from "../api/api_comment"
+  import commentReplyBox from '../components/commentReplyBox.vue'
+  import loading from '../components/loading.vue'
+  import "../theme/codeHighLight.css";
+  import "../theme/markdown.scss";
+  import "bootstrap/scss/bootstrap/_breadcrumbs.scss";
+  import copyright from '../components/copyright.vue';
+  import Toast from 'Toast';
+  module.exports = {
+    replace: true,
+    data: function () {
+      return {
+        article: {},
+        commentList: [],
+        articleTop: {},
+        articleTop3: {},
+        toggle: true,
+        selectId: '',
+        isLoading: true,
+        hasNickName: false,
+        name: '',//评论人的昵称
+        email: '',//评论人的email
+        topNum: 5,//top 榜单
+      }
+    },
+    watch: {
+      '$route': function (val) {
+        // 获取文章
+        this.getArticleById(val.params.articleId);
+      },
+    },
+    computed: {
+      //文章是有评论计数的，但是文章缓存后此信息并不准确，但commentList是不缓存的。
+      recountCommentNum: function () {
+        let _this = this;
+        let _count = 0;
+        _count = _this.commentList.length;
+        for (let i = 0, len = _this.commentList.length; len > i; i++) {
+          _count +=_this.commentList[i].next_id.length
+        }
+        return _count
+      }
+    },
+    methods: {
+      replyBtn: function (id) {
+        if (this.selectId == id) {
+          this.toggle = !this.toggle
+        } else {
+          this.toggle = true;
+          this.selectId = id
+        }
+      },
+      scrollTop: ()=> {
+        $(window).scrollTop(0);// 滚到顶部
+      },
+      /**
+       * 获取数据
+       * @param articleId 文章id
+       * */
+      getArticleById: function (articleId) {
+        const _this = this;
+        //获取文章详情
+        GetArticleById(articleId).then(function (data) {
+          _this.article = data
+          _this.isLoading = false;
+        }, function (error) {
+          if (error == 2) {
+            Toast({
+              message: '无法获取文章', iconClass: 'fa fa-warning',
+              position: 'center',
+              duration: 3000
+            });
+
+            setTimeout(function () {
+              _this.$router.replace({
+                name: 'historyList'
+              })
+            }, 3000)
+          }
+        });
+
+        //获取文章评论
+        GetArticleComments(articleId).then(function (data) {
+          _this.commentList = data;
+        }, function (error) {
+          Toast({
+            message: '无法获取评论', iconClass: 'fa fa-warning',
+            position: 'center',
+            duration: 3000
+          });
+        });
+      },
+
+      /**
+       * 获取文章排行榜，榜单
+       * @param topNum 排行榜个数
+       * */
+      getArticleTop: function (topNum) {
+        const _this = this;
+        /**
+         * 使用环境判断 userAgent 如果不是mobile则搜索top榜单
+         * */
+        if (!navigator.userAgent.match(/AppleWebKit.*Mobile.*/)) {
+          GetArticleTop(topNum).then(function (data) {
+            _this.articleTop = data;
+          }, function (error) {
+            Toast({
+              message: '无法获取榜单', iconClass: 'fa fa-warning',
+              position: 'center',
+              duration: 3000
+            });
+          });
+        }
+        if (!navigator.userAgent.match(/AppleWebKit.*Mobile.*/)) {
+          GetArticleTop(3).then(function (data) {
+            _this.articleTop3 = data;
+          }, function (error) {
+            Toast({
+              message: '无法获取榜单', iconClass: 'fa fa-warning',
+              position: 'center',
+              duration: 3000
+            });
+          });
+        }
+      },
+
+      /**
+       * 返回顶部的事件handler(有BUG)
+       * */
+      backToTopHandler: function () {
+        let _width = $(document).width()
+        if (_width >= 1200) {
+          if ($(this).scrollTop() > 0) {
+            $('#toTop').css({
+              "opacity": 1,
+              'left': $('#article').offset().left + $('#article').width(),
+            });
+          } else {
+            $('#toTop').css({
+              "opacity": 1
+            });
+          }
+        } else if (_width < 1200) {
+          if ($(this).scrollTop() > 0) {
+            $('#toTop').css({
+              "opacity": 1,
+              'left': $('#article').offset().left + $('#article').width() - $('#toTop').width(),
+            });
+          } else {
+            $('#toTop').css({
+              "opacity": 1
+            });
+          }
+        }
+      }
+    },
+    created: function () {
+      const _this = this;
+      let articleId = _this.$route.params.articleId;
+
+      $(window).scrollTop(0);// 滚到顶部
+      // To Top
+      $(document)
+      .on('scroll', _this.backToTopHandler)
+      .on('click', '#toTop', function () {
+        $(window).scrollTop(0);
+        //$('body, html').animate({scrollTop: 0}, 600);
+      });
+
+      // 获取文章
+      _this.getArticleById(articleId);
+      // 获取文章top榜单
+      _this.getArticleTop(_this.topNum);
+    },
+    mounted: function () {
+      this.$emit('notice')
+    },
+    destroyed: function () {
+      $(document).off('scroll')
+    },
+    components: {
+      'comment-box': commentReplyBox,
+      copyright,
+      loading
+    },
+  }
+
+</script>
+
 <style scoped lang="scss">
   //base
   @import "../theme/theme.scss";
@@ -752,194 +945,3 @@
 
 
 </style>
-<script type="text/javascript">
-  import API from "../config.js"
-  import {GetArticleById, GetArticleTop} from "../api/api_article"
-  import {GetArticleComments, SendComment} from "../api/api_comment"
-  import commentReplyBox from '../components/commentReplyBox.vue'
-  import loading from '../components/loading.vue'
-  import "../theme/codeHighLight.css";
-  import "../theme/markdown.scss";
-  import "bootstrap/scss/bootstrap/_breadcrumbs.scss";
-  import copyright from '../components/copyright.vue';
-  import Toast from 'Toast';
-  module.exports = {
-    replace: true,
-    data: function () {
-      return {
-        article: {},
-        commentList: [],
-        articleTop: {},
-        articleTop3: {},
-        toggle: true,
-        selectId: '',
-        isLoading: true,
-        hasNickName: false,
-        name: '',//评论人的昵称
-        email: '',//评论人的email
-        topNum: 5,//top 榜单
-      }
-    },
-    watch: {
-      '$route': function (val) {
-        // 获取文章
-        this.getArticleById(val.params.articleId);
-      },
-    },
-    computed: {
-      //文章是有评论计数的，但是文章缓存后此信息并不准确，但commentList是不缓存的。
-      recountCommentNum: function () {
-        let _this = this;
-        let _count = 0;
-        _count = _this.commentList.length;
-        for (let i = 0, len = _this.commentList.length; len > i; i++) {
-          _count +=_this.commentList[i].next_id.length
-        }
-        return _count
-      }
-    },
-    methods: {
-      replyBtn: function (id) {
-        if (this.selectId == id) {
-          this.toggle = !this.toggle
-        } else {
-          this.toggle = true;
-          this.selectId = id
-        }
-      },
-      scrollTop: ()=> {
-        $(window).scrollTop(0);// 滚到顶部
-      },
-      /**
-       * 获取数据
-       * @param articleId 文章id
-       * */
-      getArticleById: function (articleId) {
-        const _this = this;
-        //获取文章详情
-        GetArticleById(articleId).then(function (data) {
-          _this.article = data
-          _this.isLoading = false;
-        }, function (error) {
-          if (error == 2) {
-            Toast({
-              message: '无法获取文章', iconClass: 'fa fa-warning',
-              position: 'center',
-              duration: 3000
-            });
-
-            setTimeout(function () {
-              _this.$router.replace({
-                name: 'historyList'
-              })
-            }, 3000)
-          }
-        });
-
-        //获取文章评论
-        GetArticleComments(articleId).then(function (data) {
-          _this.commentList = data;
-        }, function (error) {
-          Toast({
-            message: '无法获取评论', iconClass: 'fa fa-warning',
-            position: 'center',
-            duration: 3000
-          });
-        });
-      },
-
-      /**
-       * 获取文章排行榜，榜单
-       * @param topNum 排行榜个数
-       * */
-      getArticleTop: function (topNum) {
-        const _this = this;
-        /**
-         * 使用环境判断 userAgent 如果不是mobile则搜索top榜单
-         * */
-        if (!navigator.userAgent.match(/AppleWebKit.*Mobile.*/)) {
-          GetArticleTop(topNum).then(function (data) {
-            _this.articleTop = data;
-          }, function (error) {
-            Toast({
-              message: '无法获取榜单', iconClass: 'fa fa-warning',
-              position: 'center',
-              duration: 3000
-            });
-          });
-        }
-        if (!navigator.userAgent.match(/AppleWebKit.*Mobile.*/)) {
-          GetArticleTop(3).then(function (data) {
-            _this.articleTop3 = data;
-          }, function (error) {
-            Toast({
-              message: '无法获取榜单', iconClass: 'fa fa-warning',
-              position: 'center',
-              duration: 3000
-            });
-          });
-        }
-      },
-
-      /**
-       * 返回顶部的事件handler(有BUG)
-       * */
-      backToTopHandler: function () {
-        let _width = $(document).width()
-        if (_width >= 1200) {
-          if ($(this).scrollTop() > 0) {
-            $('#toTop').css({
-              "opacity": 1,
-              'left': $('#article').offset().left + $('#article').width(),
-            });
-          } else {
-            $('#toTop').css({
-              "opacity": 1
-            });
-          }
-        } else if (_width < 1200) {
-          if ($(this).scrollTop() > 0) {
-            $('#toTop').css({
-              "opacity": 1,
-              'left': $('#article').offset().left + $('#article').width() - $('#toTop').width(),
-            });
-          } else {
-            $('#toTop').css({
-              "opacity": 1
-            });
-          }
-        }
-      }
-    },
-    created: function () {
-      const _this = this;
-      let articleId = _this.$route.params.articleId;
-
-      $(window).scrollTop(0);// 滚到顶部
-      // To Top
-      $(document)
-      .on('scroll', _this.backToTopHandler)
-      .on('click', '#toTop', function () {
-        $(window).scrollTop(0);
-        //$('body, html').animate({scrollTop: 0}, 600);
-      });
-
-      // 获取文章
-      _this.getArticleById(articleId);
-      // 获取文章top榜单
-      _this.getArticleTop(_this.topNum);
-    },
-    mounted: function () {
-      this.$emit('notice')
-    },
-    destroyed: function () {
-      $(document).off('scroll')
-    },
-    components: {
-      'comment-box': commentReplyBox,
-      copyright,
-      loading
-    },
-  }
-
-</script>

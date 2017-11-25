@@ -152,146 +152,7 @@
     </div>
   </article>
 </template>
-<style scoped lang="scss">
-  //base
-  @import "../theme/theme.scss";
 
-  .deleteConfirmText {
-    margin: 10px;
-  }
-
-  .comments {
-    height: 100%;
-    .title {
-      width: 100%;
-      color: #fff;
-      margin-bottom: 20px;
-      text-align: left;
-    }
-
-    .commentList {
-      .commentList--dropdown {
-        @include display-flex;
-        @include justify-content(space-between);
-        @include align-items(center);
-        margin-bottom: 10px;
-        .commentList--dropdown-e {
-          @include display-flex;
-          @include justify-content(flex-end);
-          @include align-items(center);
-
-          .commentList--dropdown-label {
-            color: $base-theme-color;
-            //margin-right: 10px;
-            font-size: 14px;
-            //margin-left:10px;
-          }
-          .commentList--dropdown-div {
-            margin-left: 10px;
-            button {
-              width: 120px;
-            }
-            .dropdown-menu {
-              width: 120px;
-              min-width: auto;
-              li {
-                text-align: center;
-                a {
-                  cursor: pointer;
-                }
-              }
-
-            }
-
-          }
-        }
-
-      }
-      .comments__ask {
-        box-sizing: content-box;
-        padding: 10px;
-        margin-bottom: 5px;
-        border-bottom: 1px solid $border-bottom-dark;
-        position: relative;
-        &:nth-last-child(1) {
-          border-bottom: 1px solid transparent;
-        }
-        .comments__ask__title {
-          color: #fff;
-          margin-bottom: 10px;
-          @include display-flex;
-          @include justify-content(space-between);
-          @include align-items(center);
-          h3 {
-            cursor: pointer;
-            color: #fff;
-            border-left: 4px solid $base-theme-color;
-            padding-left: 10px;
-            transition: all ease 200ms;
-            max-width: 580px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            margin-bottom: 0;
-
-            &:hover {
-              color: $base-theme-color;
-
-            }
-          }
-          .comments__ask__title--btns {
-            button {
-
-            }
-          }
-
-        }
-        .comments__ask__header {
-          font-size: 14px;
-          line-height: 130%;
-          padding: 5px 0;
-          color: #ececec;
-          //cursor: pointer;
-          .name {
-            font-size: 18px;
-            color: $base-theme-color;
-          }
-          .reply, .no-check {
-            color: $base-theme-color-o;
-            //transition: all ease 200ms;
-          }
-          .alreadyReplied, .checked {
-            color: green;
-          }
-          a {
-            color: #ececec;
-          }
-        }
-        .comments__ask__content {
-          font-size: 14px;
-          line-height: 150%;
-          padding: 5px 0;
-          color: #fff;
-          //cursor: pointer;
-        }
-      }
-    }
-
-  }
-
-  .comment--replyBox {
-    font-size: 14px;
-    .comment--replyBox-body {
-      .comment--replyBox--textarea {
-        textarea {
-          overflow-x: hidden;
-          resize: vertical;
-        }
-      }
-    }
-  }
-
-</style>
 <script type="text/javascript">
   import Vue from "vue";
   import _ from "lodash";
@@ -483,3 +344,144 @@
   }
 
 </script>
+
+<style scoped lang="scss">
+  //base
+  @import "../theme/theme.scss";
+
+  .deleteConfirmText {
+    margin: 10px;
+  }
+
+  .comments {
+    height: 100%;
+    .title {
+      width: 100%;
+      color: #fff;
+      margin-bottom: 20px;
+      text-align: left;
+    }
+
+    .commentList {
+      .commentList--dropdown {
+        @include display-flex;
+        @include justify-content(space-between);
+        @include align-items(center);
+        margin-bottom: 10px;
+        .commentList--dropdown-e {
+          @include display-flex;
+          @include justify-content(flex-end);
+          @include align-items(center);
+
+          .commentList--dropdown-label {
+            color: $base-theme-color;
+            //margin-right: 10px;
+            font-size: 14px;
+            //margin-left:10px;
+          }
+          .commentList--dropdown-div {
+            margin-left: 10px;
+            button {
+              width: 120px;
+            }
+            .dropdown-menu {
+              width: 120px;
+              min-width: auto;
+              li {
+                text-align: center;
+                a {
+                  cursor: pointer;
+                }
+              }
+
+            }
+
+          }
+        }
+
+      }
+      .comments__ask {
+        box-sizing: content-box;
+        padding: 10px;
+        margin-bottom: 5px;
+        border-bottom: 1px solid $border-bottom-dark;
+        position: relative;
+        &:nth-last-child(1) {
+          border-bottom: 1px solid transparent;
+        }
+        .comments__ask__title {
+          color: #fff;
+          margin-bottom: 10px;
+          @include display-flex;
+          @include justify-content(space-between);
+          @include align-items(center);
+          h3 {
+            cursor: pointer;
+            color: #fff;
+            border-left: 4px solid $base-theme-color;
+            padding-left: 10px;
+            transition: all ease 200ms;
+            max-width: 580px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            margin-bottom: 0;
+
+            &:hover {
+              color: $base-theme-color;
+
+            }
+          }
+          .comments__ask__title--btns {
+            button {
+
+            }
+          }
+
+        }
+        .comments__ask__header {
+          font-size: 14px;
+          line-height: 130%;
+          padding: 5px 0;
+          color: #ececec;
+          //cursor: pointer;
+          .name {
+            font-size: 18px;
+            color: $base-theme-color;
+          }
+          .reply, .no-check {
+            color: $base-theme-color-o;
+            //transition: all ease 200ms;
+          }
+          .alreadyReplied, .checked {
+            color: green;
+          }
+          a {
+            color: #ececec;
+          }
+        }
+        .comments__ask__content {
+          font-size: 14px;
+          line-height: 150%;
+          padding: 5px 0;
+          color: #fff;
+          //cursor: pointer;
+        }
+      }
+    }
+
+  }
+
+  .comment--replyBox {
+    font-size: 14px;
+    .comment--replyBox-body {
+      .comment--replyBox--textarea {
+        textarea {
+          overflow-x: hidden;
+          resize: vertical;
+        }
+      }
+    }
+  }
+
+</style>

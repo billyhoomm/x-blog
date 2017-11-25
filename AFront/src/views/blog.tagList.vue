@@ -31,6 +31,44 @@
     <loading v-if="!!isLoading" class="loading" :number=9></loading>
   </div>
 </template>
+
+<script type="text/javascript">
+  import noData from "../components/nodata.vue"
+  import copyright from '../components/copyright.vue'
+  import {GetTagsListWithStructure} from '../api/api_tag'
+  import loading from "../components/loading.vue"
+  export default{
+    data: function () {
+      return {
+        tagList: [],
+        hasData: true,
+        isLoading: true,
+      }
+    },
+    methods: {
+      getTagsListWithStructure: function () {
+        const _this = this;
+        GetTagsListWithStructure().then((data) => {
+          _this.tagList = data;
+        }, ()=> {
+          _this.hasData = false;
+        }).then(function () {
+          _this.tagList.length === 0 ? (_this.hasData = false) : (_this.hasData = true);
+          _this.isLoading = false;
+        });
+      }
+    },
+    created: function () {
+      const _this = this;
+      $(window).scrollTop(0);// 滚到顶部
+     _this.getTagsListWithStructure();
+    },
+    components: {
+      noData, copyright, loading
+    }
+  }
+</script>
+
 <style scoped lang="scss">
   //base
   @import "../theme/theme.scss";
@@ -135,39 +173,3 @@
   }
 
 </style>
-<script type="text/javascript">
-  import noData from "../components/nodata.vue"
-  import copyright from '../components/copyright.vue'
-  import {GetTagsListWithStructure} from '../api/api_tag'
-  import loading from "../components/loading.vue"
-  export default{
-    data: function () {
-      return {
-        tagList: [],
-        hasData: true,
-        isLoading: true,
-      }
-    },
-    methods: {
-      getTagsListWithStructure: function () {
-        const _this = this;
-        GetTagsListWithStructure().then((data) => {
-          _this.tagList = data;
-        }, ()=> {
-          _this.hasData = false;
-        }).then(function () {
-          _this.tagList.length === 0 ? (_this.hasData = false) : (_this.hasData = true);
-          _this.isLoading = false;
-        });
-      }
-    },
-    created: function () {
-      const _this = this;
-      $(window).scrollTop(0);// 滚到顶部
-     _this.getTagsListWithStructure();
-    },
-    components: {
-      noData, copyright, loading
-    }
-  }
-</script>

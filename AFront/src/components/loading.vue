@@ -3,6 +3,41 @@
     <div v-for="i in number" :style="divBackgroundColor"></div>
   </div>
 </template>
+
+<script type="text/javascript">
+  /**
+   * loading组件
+   * @param number 显示的小球数量，默认为3 :number="3"表示取number类型
+   * @param color 小球的颜色 默认为白色
+   * @example <loading :number="3" color="#38b7ea" class="topBar--loading" v-if="!articleTop.latest"></loading>
+   */
+  export default{
+    props: {
+      // 小球颜色
+      color: {
+        type: String,
+        default: '#fff',
+      },
+      // 小球数量
+      number: {
+        type: Number,
+        default: 3,
+        validator: function (val) {
+          return val < 10 && val > 0
+        }
+      },
+    },
+    data(){
+      return {
+        // 颜色组装
+        divBackgroundColor: {
+          backgroundColor: this.color
+        }
+      }
+    }
+  }
+</script>
+
 <style scoped lang="scss">
   /*动画*/
   .ball-grid-pulse-loading {
@@ -117,36 +152,3 @@
     }
   }
 </style>
-<script type="text/javascript">
-  /**
-   * loading组件
-   * @param number 显示的小球数量，默认为3 :number="3"表示取number类型
-   * @param color 小球的颜色 默认为白色
-   * @example <loading :number="3" color="#38b7ea" class="topBar--loading" v-if="!articleTop.latest"></loading>
-   */
-  export default{
-    props: {
-      // 小球颜色
-      color: {
-        type: String,
-        default: '#fff',
-      },
-      // 小球数量
-      number: {
-        type: Number,
-        default: 3,
-        validator: function (val) {
-          return val < 10 && val > 0
-        }
-      },
-    },
-    data(){
-      return {
-        // 颜色组装
-        divBackgroundColor: {
-          backgroundColor: this.color
-        }
-      }
-    }
-  }
-</script>

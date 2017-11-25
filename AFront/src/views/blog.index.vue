@@ -2,14 +2,12 @@
   <div id="indexBox" class="indexBox animated fadeIn">
     <div class="index-content">
       <div class="head-wrap">
-        <h3 class="text-center services">The blog of billyh</h3>
+        <h3 class="text-center services">The blog of billyhu</h3>
         <div id="headlines">
-          <h1 :class="{'current': now==1}" class="text-center textItem">Hello <span class="blue">guys</span></h1>
-          <h1 :class="{'current': now==2}" class="text-center textItem">我是<span class="blue">billyh</span></h1>
-          <h1 :class="{'current': now==3}" class="text-center textItem"><span class="blue">凡有所学</span>皆成性格</h1>
-          <h1 :class="{'current': now==4}" class="text-center textItem">要怪就怪我的<span class="blue">剑</span>吧!</h1>
+          <h1 :class="{'current': now==1}" class="text-center textItem">New <span class="blue">again</span></h1>
+          <h1 :class="{'current': now==2}" class="text-center textItem"><span class="blue">凡有所学</span>皆成性格</h1>
         </div>
-        <div class="text-center cat">个人IT技术经验分享</div>
+        <div class="text-center cat">我是一只猪</div>
       </div>
       <section class="index-btnBox">
         <router-link class="index-btnBox-each text-center" :to="{ name: 'blog',query: { listType: 'latest' }}"
@@ -24,6 +22,33 @@
     </div>
   </div>
 </template>
+<script type="text/javascript">
+  // import Vue from "vue";
+  import copyright from '../components/copyright.vue'
+  module.exports = {
+    data: function () {
+      return {
+        now: 1,
+        clearInterval: '',
+      }
+    },
+    mounted: function () {
+      let self = this;
+      var count = $('#headlines').children().length;
+      self.clearInterval = setInterval(function () {
+        self.now >= count ? self.now = 1 : self.now++;
+      }, 6000);
+    },
+    destroyed: function () {
+      clearInterval(this.clearInterval)
+    },
+    components: {
+      copyright
+    }
+  }
+
+</script>
+
 <style scoped lang="scss">
   //base
   @import "../theme/theme.scss";
@@ -162,31 +187,5 @@
 
   }
 </style>
-<script type="text/javascript">
-  // import Vue from "vue";
-  import copyright from '../components/copyright.vue'
-  module.exports = {
-    data: function () {
-      return {
-        now: 1,
-        clearInterval: '',
-      }
-    },
-    mounted: function () {
-      let self = this;
-      var count = $('#headlines').children().length;
-      self.clearInterval = setInterval(function () {
-        self.now >= count ? self.now = 1 : self.now++;
-      }, 3000);
-    },
-    destroyed: function () {
-      clearInterval(this.clearInterval)
-    },
-    components: {
-      copyright
-    }
-  }
-
-</script>
 
 

@@ -154,55 +154,7 @@
 
 
 </template>
-<style scoped lang="scss">
-  //base
-  @import "../theme/theme.scss";
 
-  .deleteConfirmText {
-    margin: 10px;
-  }
-
-  .tags {
-    height: 100%;
-    .title {
-      width: 100%;
-      color: #fff;
-      margin-bottom: 10px;
-      text-align: left;
-    }
-    .btnBox {
-    }
-    table {
-      color: #fff;
-      th {
-        text-align: center;
-        color: #00b2e2;
-        cursor: pointer;
-        position: relative;
-        span {
-          position: absolute;
-          margin-left: 5px;
-          top: inherit;
-          left: inherit;
-        }
-      }
-      .danger td {
-        background-color: rgba(255, 2, 0, 0.53) !important;
-      }
-      .warning td {
-        background-color: rgba(2, 255, 0, 0.35) !important;
-      }
-      td {
-        vertical-align: middle !important;
-        font-size: 14px;
-        text-align: center;
-        border-top-color:transparent;
-        border-bottom:1px solid $border-bottom-dark;
-      }
-    }
-  }
-
-</style>
 <script type="text/javascript">
   import Vue from "vue";
   import _ from "lodash";
@@ -394,3 +346,53 @@
     },
   }
 </script>
+
+<style scoped lang="scss">
+  //base
+  @import "../theme/theme.scss";
+
+  .deleteConfirmText {
+    margin: 10px;
+  }
+
+  .tags {
+    height: 100%;
+    .title {
+      width: 100%;
+      color: #fff;
+      margin-bottom: 10px;
+      text-align: left;
+    }
+    .btnBox {
+    }
+    table {
+      color: #fff;
+      th {
+        text-align: center;
+        color: #00b2e2;
+        cursor: pointer;
+        position: relative;
+        span {
+          position: absolute;
+          margin-left: 5px;
+          top: inherit;
+          left: inherit;
+        }
+      }
+      .danger td {
+        background-color: rgba(255, 2, 0, 0.53) !important;
+      }
+      .warning td {
+        background-color: rgba(2, 255, 0, 0.35) !important;
+      }
+      td {
+        vertical-align: middle !important;
+        font-size: 14px;
+        text-align: center;
+        border-top-color:transparent;
+        border-bottom:1px solid $border-bottom-dark;
+      }
+    }
+  }
+
+</style>

@@ -32,80 +32,6 @@
     </section>
   </div>
 </template>
-<style _thisd lang="scss">
-  //base
-  @import "../theme/theme.scss";
-  //登录页面
-  .login {
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    .login-content {
-      display: flex;
-      justify-content: center;
-      flex-direction: column;
-      align-items: center;
-      box-sizing: border-box;
-      height: 100%;
-      background: transparent radial-gradient(ellipse at center, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.8) 100%);
-      left: 0;
-      top: 0;
-      width: 100%;
-      .blue {
-        color: $base-theme-color;
-      }
-      .login-content-inner {
-        width: 300px;
-        text-align: right;
-        box-sizing: content-box;
-        padding: 30px;
-
-        background: rgba(0, 0, 0, 0.3);
-        border-radius: 5px;
-        h1, h4 {
-          color: #fff;
-        }
-        .divider {
-          width: 30px;
-          height: 3px;
-          background-color: #49c8fb;
-          float: right;
-          margin: 0px auto 15px;
-        }
-        .btnGroup {
-          .errText {
-            color: $base-red-color;
-            margin-right: 10px;
-
-          }
-          //登录按钮
-          .btn-x-songtao {
-            width: 100px;
-            background-color: $base-theme-color;
-            transition: all ease 300ms;
-            color: #fff;
-            &:hover {
-              color: #fff;
-              background-color: #49c8fb;
-            }
-          }
-        }
-      }
-      .notice {
-        color: $base-theme-color;
-        margin-bottom: 100px;
-        margin-top: 10px;
-      }
-    }
-    .index-copyright {
-      position: absolute;
-      bottom: 1%;
-      text-align: center;
-      width: 100%;
-      left: 0;
-    }
-  }
-</style>
 
 
 <script type="text/javascript">
@@ -200,3 +126,78 @@
 
   }
 </script>
+
+<style _thisd lang="scss">
+  //base
+  @import "../theme/theme.scss";
+  //登录页面
+  .login {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    .login-content {
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+      box-sizing: border-box;
+      height: 100%;
+      background: transparent radial-gradient(ellipse at center, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.8) 100%);
+      left: 0;
+      top: 0;
+      width: 100%;
+      .blue {
+        color: $base-theme-color;
+      }
+      .login-content-inner {
+        width: 300px;
+        text-align: right;
+        box-sizing: content-box;
+        padding: 30px;
+
+        background: rgba(0, 0, 0, 0.3);
+        border-radius: 5px;
+        h1, h4 {
+          color: #fff;
+        }
+        .divider {
+          width: 30px;
+          height: 3px;
+          background-color: #49c8fb;
+          float: right;
+          margin: 0px auto 15px;
+        }
+        .btnGroup {
+          .errText {
+            color: $base-red-color;
+            margin-right: 10px;
+
+          }
+          //登录按钮
+          .btn-x-songtao {
+            width: 100px;
+            background-color: $base-theme-color;
+            transition: all ease 300ms;
+            color: #fff;
+            &:hover {
+              color: #fff;
+              background-color: #49c8fb;
+            }
+          }
+        }
+      }
+      .notice {
+        color: $base-theme-color;
+        margin-bottom: 100px;
+        margin-top: 10px;
+      }
+    }
+    .index-copyright {
+      position: absolute;
+      bottom: 1%;
+      text-align: center;
+      width: 100%;
+      left: 0;
+    }
+  }
+</style>

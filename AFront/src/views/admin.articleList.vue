@@ -98,44 +98,7 @@
     </div>
   </div>
 </template>
-<style scoped lang="scss">
-  //base
-  @import "../theme/theme.scss";
 
-  .articleList {
-    .title {
-      width: 100%;
-      color: #fff;
-      margin-bottom: 10px;
-    }
-    .btnBox {
-      //text-align: right;
-    }
-    table {
-      text-align: center;
-      color: #fff;
-      th {
-        text-align: center;
-        color: #00b2e2;
-        position: relative;
-        cursor: pointer;
-        span {
-          position: absolute;
-          margin-left: 5px;
-          top: inherit;
-          left: inherit;
-        }
-      }
-      td {
-        vertical-align: middle !important;
-        //cursor: pointer;
-        max-width: 190px;
-        border-top-color:transparent;
-        border-bottom:1px solid $border-bottom-dark;
-      }
-    }
-  }
-</style>
 <script type="text/javascript">
   import Vue from "vue";
   import _ from "lodash";
@@ -196,3 +159,42 @@
   }
 
 </script>
+
+<style scoped lang="scss">
+  //base
+  @import "../theme/theme.scss";
+
+  .articleList {
+    .title {
+      width: 100%;
+      color: #fff;
+      margin-bottom: 10px;
+    }
+    .btnBox {
+      //text-align: right;
+    }
+    table {
+      text-align: center;
+      color: #fff;
+      th {
+        text-align: center;
+        color: #00b2e2;
+        position: relative;
+        cursor: pointer;
+        span {
+          position: absolute;
+          margin-left: 5px;
+          top: inherit;
+          left: inherit;
+        }
+      }
+      td {
+        vertical-align: middle !important;
+        //cursor: pointer;
+        max-width: 190px;
+        border-top-color:transparent;
+        border-bottom:1px solid $border-bottom-dark;
+      }
+    }
+  }
+</style>

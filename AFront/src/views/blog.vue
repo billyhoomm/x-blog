@@ -13,6 +13,29 @@
     </transition>
   </div>
 </template>
+
+<script type="text/javascript">
+  import Vue from "vue";
+  import myInfo from './blog.myInfo.vue'
+  import {mapState} from 'vuex';
+  module.exports = {
+    data: function () {
+      return {
+      }
+    },
+    computed: {
+      ...mapState({
+        isShowMyWords: 'isShowMyWords',
+      }),
+    },
+    components: {
+      myInfo
+    },
+  }
+
+
+</script>
+
 <style scoped lang="scss">
 
   //base
@@ -113,24 +136,3 @@
     }
   }
 </style>
-<script type="text/javascript">
-  import Vue from "vue";
-  import myInfo from './blog.myInfo.vue'
-  import {mapState} from 'vuex';
-  module.exports = {
-    data: function () {
-      return {
-      }
-    },
-    computed: {
-      ...mapState({
-        isShowMyWords: 'isShowMyWords',
-      }),
-    },
-    components: {
-      myInfo
-    },
-  }
-
-
-</script>

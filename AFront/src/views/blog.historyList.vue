@@ -32,6 +32,47 @@
     <loading v-if="!!isLoading" class="loading" :number=9></loading>
   </div>
 </template>
+
+<script type="text/javascript">
+  import Vue from "vue"
+  import noData from "../components/nodata.vue"
+  import {GetHistoryList} from "../api/api_article"
+  import copyright from '../components/copyright.vue'
+  import loading from "../components/loading.vue"
+  export default{
+    data: function () {
+      return {
+        historyList: [],
+        isLoading: true,
+        hasData: true,
+      }
+    },
+    methods: {
+      // 获取文章历史列表
+      getHistoryList:function () {
+        const _this = this;
+        GetHistoryList().then((data)=> {
+          _this.historyList = data;
+        }, ()=> {
+          _this.hasData = false;
+        }).then(function () {
+          _this.historyList.length === 0 ? (_this.hasData = false) : (_this.hasData = true);
+          _this.isLoading = false;
+        });
+      }
+    },
+    created: function () {
+      const _this = this;
+      $(window).scrollTop(0);// 滚到顶部
+      _this.getHistoryList()
+    },
+    components: {
+      noData, copyright, loading
+    }
+  }
+
+</script>
+
 <style scoped lang="scss">
   //base
   @import "../theme/theme.scss";
@@ -175,42 +216,3 @@
 
   }
 </style>
-<script type="text/javascript">
-  import Vue from "vue"
-  import noData from "../components/nodata.vue"
-  import {GetHistoryList} from "../api/api_article"
-  import copyright from '../components/copyright.vue'
-  import loading from "../components/loading.vue"
-  export default{
-    data: function () {
-      return {
-        historyList: [],
-        isLoading: true,
-        hasData: true,
-      }
-    },
-    methods: {
-      // 获取文章历史列表
-      getHistoryList:function () {
-        const _this = this;
-        GetHistoryList().then((data)=> {
-          _this.historyList = data;
-        }, ()=> {
-          _this.hasData = false;
-        }).then(function () {
-          _this.historyList.length === 0 ? (_this.hasData = false) : (_this.hasData = true);
-          _this.isLoading = false;
-        });
-      }
-    },
-    created: function () {
-      const _this = this;
-      $(window).scrollTop(0);// 滚到顶部
-      _this.getHistoryList()
-    },
-    components: {
-      noData, copyright, loading
-    }
-  }
-
-</script>
