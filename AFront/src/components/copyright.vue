@@ -1,6 +1,6 @@
 <template>
     <div class="index-bottom-info text-center text-overflow">
-        <p><i class="fa fa-copyright"></i><span> 2015-2016 All Rights Reserved.</span><span class="hidden-xs">Designed by billyh.鄂ICP备16001878号.</span></p>
+        <p><i class="fa fa-copyright"></i><span> 2017-2018 All Rights Reserved.</span><span class="hidden-xs">Designed by billyhu.鄂ICP备16001878号.</span></p>
     </div>
 </template>
 <style scoped lang="scss">

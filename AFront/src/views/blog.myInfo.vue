@@ -45,7 +45,7 @@
           <ul class="SNS">
             <li class="hidden-lg"><a title="GitHub" target="_blank" href="https://github.com/xiangsongtao"><i
               class="fa fa-github"></i></a></li>
-            <li @click="showSocialImg('http://www.billyh.cn/resource/img-resource/wechat.png')" data-toggle="modal"
+            <li @click="showSocialImg()" data-toggle="modal"
                 data-target="#socialContact"><i class="fa fa-weixin"></i></li>
             <li><a title="github" target="_blank" href="https://github.com/billyhoomm"><i class="fa fa-github"></i></a></li>
             </li>
@@ -74,39 +74,8 @@
   import {addImgPrefix} from "../utils/filters.js";
   import {GetMyInfo} from '../api/api_myinfo'
   import {mapState, mapActions} from 'vuex';
-  // Vue.directive('err-src', {
-  //   bind: function () {
-  //     let scope = this;
-  //     let element = $(scope.el);
-  //     let errSrc = scope.expression;
-  //     element.css({"opacity": 0});
-  //     var emptyTransparent = "data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==";
-  //     //如果失败
-  //     element.on('error', function () {
-  //       if (!!errSrc) {
-  //         element.attr('src', errSrc);
-  //       } else {
-  //         element.attr('src', emptyTransparent);
-  //       }
-  //       element.css({"opacity": 1, "transition": "opacity ease 300ms"});
-  //       element.off()
-  //     });
-  //     //如果成功
-  //     element.on('load', function () {
-  //       element.css({"opacity": 1, "transition": "opacity ease 300ms"});
-  //     });
-  //     // 准备工作
-  //     // 例如，添加事件处理器或只需要运行一次的高耗任务
-  //   },
-  //   update: function (newValue, oldValue) {
-  //     // 值更新时的工作
-  //     // 也会以初始值为参数调用一次
-  //   },
-  //   unbind: function () {
-  //     // 清理工作
-  //     // 例如，删除 bind() 添加的事件监听器
-  //   }
-  // });
+  import config from '../config.js'
+
   export default {
     //replace: true,
     data: function () {
@@ -138,8 +107,8 @@
       imgPrefix: function (val) {
         return addImgPrefix(val)
       },
-      showSocialImg: function (url) {
-        this.setSocialImgUrl(url)
+      showSocialImg: function () {
+        this.setSocialImgUrl(config.socialImgUrl)
       },
       ...mapActions({
         // 注意在这里你需要 `getMyInfo` 函数本身而不是它的执行结果 'getMyInfo()'

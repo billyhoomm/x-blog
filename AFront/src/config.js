@@ -10,7 +10,7 @@ if (process.env.NODE_ENV === 'production') {
   };
 } else {
   CONFIG = {
-    url: "http://localhost:8081",
+    url: "http://blog.billyh.cn",
     //我的信息_id
     MY_INFO_ID: '5a09c50775bbda8712825a63',
     //我对对评论进行回复的信息
@@ -187,6 +187,9 @@ module.exports = {
     'http://billyh.oss-cn-shanghai.aliyuncs.com/bg-img/8.jpg',
     'http://billyh.oss-cn-shanghai.aliyuncs.com/bg-img/9.jpg',
     'http://billyh.oss-cn-shanghai.aliyuncs.com/bg-img/10.jpg'
-  ]
+  ],
+
+  // 微信二维码图片
+  socialImgUrl: 'http://cdn.billyh.cn/icon/wechat.png'
 
 };
