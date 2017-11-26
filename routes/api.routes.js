@@ -98,6 +98,8 @@ router.post('/imgupload', multipartMiddleware, function (req, res, next) {
         let arr = imgInfo.type.split('/');
         let suffix = arr[arr.length - 1];
         let filename = `blogUploads/${Date.parse(new Date())}.${suffix}`;
+        console.log(imgInfo);
+        console.log(`临时文件路径${imgInfo.path}`);
 
         client.uploadFile(imgInfo.path, {key: filename}, function(err, result){
             if(err){

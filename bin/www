@@ -87,4 +87,6 @@ function onListening() {
     ? 'pipe ' + addr
     : 'port ' + addr.port;
   debug('Listening on ' + bind);
+  console.log('server start successful')
+  console.log('Listening on ' + bind)
 }

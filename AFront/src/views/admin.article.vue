@@ -368,7 +368,6 @@
         }
         _this.isImgLoading = true;
         ImageUpload(file).then(function (imageName) {
-          console.log('=====',imageName);
           _this.uploadImgUrl = addImgPrefix(imageName);
         }, function () {
           alert("upload error");

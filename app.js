@@ -82,7 +82,7 @@ app.use(function (err, req, res, next) {
 	res.status(err.status || 500);
 	res.set('Content-Type', 'text/html');
 	res.render('error', {
-		title: '我们一定能找到你',
+		title: '我们一定会找到你',
 	});
 });
 

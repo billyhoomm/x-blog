@@ -5,7 +5,7 @@
       <a v-if="isMobile && this.$route.name=='article'" @click="navBack" class="nav__item" title="后退">
         <i class="fa fa-arrow-left  fa-fw fa-lg blue blackBG"></i>
       </a>
-      <a v-else class="nav__item" data-toggle="tooltip" data-placement="right" title="billyh" href = "http://blog.billyh.cn">
+      <a v-else class="nav__item" @click="clearSessionStorage()" data-toggle="tooltip" data-placement="right" title="billyh" href = "#">
         <img class="siteLogo img-circle" src = "http://cdn.billyh.cn/icon/node.png">
       </a>
       <router-link class="nav__item" :to="{ name: 'index'}" exact data-toggle="tooltip" activeClass="active"
@@ -102,6 +102,7 @@
       },
       clearSessionStorage(){
         this.$sessionStorage.$reset();
+        window.location.href = 'http://blog.billyh.cn';
       },
       //加载资源,成功执行回调
       _loadImg(url, cb) {
