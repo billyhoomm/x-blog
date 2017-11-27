@@ -1,5 +1,5 @@
 
-API接口文档（前方高能误入）
+API接口文档
 ---
 
 
@@ -21,8 +21,8 @@ GET、/register、/login、/imgupload、POST-/comment
 
 ### 补充说明 
 
-- 具体的API请参考目录：app/routes/api.routes.js文件。  
-- mongodb表结构请参考目录：app/config/mongoose.js文件。 
+- 具体的API请参考目录：routes/api.routes.js文件。  
+- mongodb表结构请参考目录：config/mongoose.js文件。 
 
 
 ### API参数通用格式说明
@@ -50,11 +50,11 @@ data:
     "username": "username",
     "password": "password",
     "is_admin":"true",
-    "full_name":"X-SONGTAO",
-    "position":"前端工程师&&Nodejs",
-    "address":"江苏-苏州",
-    "motto":"全栈工程师薪水如何？没15k我不考虑。",
-    "personal_state":"各位好，我是X-SONGTAO！",
+    "full_name":"billyhu",
+    "position":"前端 & Nodejs",
+    "address":"湖北-武汉",
+    "motto":"重新开始",
+    "personal_state":"hi，i'm billyhu！",
     "img_url":"http://your.head.img"
 }
 resopnse:
@@ -66,11 +66,11 @@ resopnse:
     "username": "username",
     "password": "password",
     "is_admin": true,
-    "full_name": "X-SONGTAO",
-    "position": "前端工程师&&Nodejs",
-    "address": "江苏-苏州",
-    "motto": "全栈工程师薪水如何？没15k我不考虑。",
-    "personal_state": "各位好，我是X-SONGTAO！",
+    "full_name": "billyhu",
+    "position": "前端 & Nodejs",
+    "address": "湖北-武汉",
+    "motto": "重新开始",
+    "personal_state": "hi，i'm billyhu！",
     "img_url": "http://your.head.img",
     "_id": "_id",
     "login_info": [
