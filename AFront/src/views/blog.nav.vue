@@ -102,7 +102,7 @@
       },
       clearSessionStorage(){
         this.$sessionStorage.$reset();
-        window.location.href = 'http://blog.billyh.cn';
+        window.location.href = 'http://blog.billyhu.com';
       },
       //加载资源,成功执行回调
       _loadImg(url, cb) {

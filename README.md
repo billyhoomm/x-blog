@@ -76,7 +76,7 @@ npm run build #构建
 let CONFIG;
 if (process.env.NODE_ENV === 'production') {
   CONFIG = {
-    url: "http://blog.billyh.cn",
+    url: "http://blog.billyhu.com",
     MY_INFO_ID: '5837eaa795661756b0bc9eb4',
     MY: '博主',
     EMAIL: 'billyhoom@qq.com'

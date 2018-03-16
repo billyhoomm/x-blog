@@ -26,11 +26,11 @@
         <section class="detail__nav">
           <ul class="tabs text-shadow" :class="{'active':isShowMyWords}">
             <li>
-              <router-link :to="{ name: 'artList',query: { listType: 'latest' }}" activeClass="active" tag="a">最新列表
+              <router-link :to="{ name: 'artList',query: { listType: 'latest' }}" activeClass="active" tag="a">最新文章
               </router-link>
             </li>
             <li>
-              <router-link :to="{ name: 'historyList'}" activeClass="active" tag="a">时光机</router-link>
+              <router-link :to="{ name: 'historyList'}" activeClass="active" tag="a">归档</router-link>
             </li>
             <li>
               <router-link :to="{ name: 'tagList'}" activeClass="active" tag="a">标签库</router-link>

@@ -7,7 +7,7 @@
     <div class="cataBox card-shadow" v-for="cataBox of historyList">
       <h3 class="cataBox__title">
         <span class="main">{{cataBox.year}}</span>
-        <span class="tag">时光机</span>
+        <span class="tag">归档</span>
       </h3>
       <div class="cataBox__content">
         <div class="itemBox" v-for="monthBox in cataBox.data">

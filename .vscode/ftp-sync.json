@@ -1,8 +1,8 @@
 {
-    "remotePath": "/home/www/blog",
-    "host": "180.76.150.134",
+    "remotePath": "/home/blog/XBlog",
+    "host": "118.24.61.24",
     "username": "root",
-    "password": "3u767^89",
+    "password": "uTBGPkdkEppzhwQ6",
     "port": 22,
     "secure": false,
     "protocol": "sftp",

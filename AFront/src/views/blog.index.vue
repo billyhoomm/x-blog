@@ -7,11 +7,11 @@
           <h1 :class="{'current': now==1}" class="text-center textItem">New <span class="blue">again</span></h1>
           <h1 :class="{'current': now==2}" class="text-center textItem"><span class="blue">凡有所学</span>皆成性格</h1>
         </div>
-        <div class="text-center cat">我是一只猪</div>
+        <div class="text-center cat">这里搜集了我的技术分享和生活感悟</div>
       </div>
       <section class="index-btnBox">
         <router-link class="index-btnBox-each text-center" :to="{ name: 'blog',query: { listType: 'latest' }}"
-                     activeClass="active" tag="div">我的博客
+                     activeClass="active" tag="div">我的文章
         </router-link>
         <router-link class="index-btnBox-each text-center" :to="{ name: 'music'}" activeClass="active" tag="div">我的音乐
         </router-link>
