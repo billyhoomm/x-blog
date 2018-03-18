@@ -101,6 +101,7 @@
         $('#logout').modal()
       },
       clearSessionStorage(){
+        this.$localStorage.$delete('userBackground');
         this.$sessionStorage.$reset();
         window.location.href = 'http://blog.billyhu.com';
       },
