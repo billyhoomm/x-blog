@@ -16,7 +16,7 @@ let client = qn.create(config_qn);
 function explorer(path){
     return new Promise((res, rej) => {
         fs.readdir(path, function(err, files){
-            //err 为错误 , files 文件名列表包含文件夹与文件
+            //err错误 , files 文件名列表包含文件夹与文件
             if(err){
                 console.log('error:\n' + err);
                 rej(-1)
