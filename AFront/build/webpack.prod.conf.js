@@ -75,6 +75,7 @@ const webpackConfig = merge(baseWebpackConfig, {
       name: 'vendor',
       minChunks (module) {
         // any required modules inside node_modules are extracted to vendor
+        // 将从node_modules里引用的公共文件打包成vendor
         return (
           module.resource &&
           /\.js$/.test(module.resource) &&
