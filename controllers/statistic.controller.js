@@ -1,6 +1,3 @@
-/**
- * Created by xiangsongtao on 16/3/4.
- */
 let mongoose = require('mongoose');
 let config = require('../config/config.js');
 //数据模型
