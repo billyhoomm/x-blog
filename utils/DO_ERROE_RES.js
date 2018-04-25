@@ -1,6 +1,8 @@
-/**
- * Created by xiangsongtao on 16/6/23.
- */
+/*
+ * @Dsc:错误控制
+ * @Author: billyhu 
+ * @Date: 2018-04-25 17:54:21
+*/
 module.exports = function (res) {
     res.status(200);
     res.send({

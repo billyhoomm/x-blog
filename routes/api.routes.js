@@ -1,3 +1,8 @@
+/*
+ * @Dsc:API接口实现
+ * @Author: billyhu 
+ * @Date: 2017-11-25 17:51:23
+*/
 'use strict';
 let express = require('express');
 let router = express.Router();
@@ -5,7 +10,7 @@ let router = express.Router();
 let multipart = require('connect-multiparty');
 let multipartMiddleware = multipart();
 
-const config_qn = require('../config/config').qiniu
+const config_qn = require('../config/config_').qiniu;
 const qn = require('qn');
 let client = qn.create(config_qn);
 

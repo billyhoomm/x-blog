@@ -1,7 +1,9 @@
-/**
- * Created by Hsiang on 2016/10/12.
- * 路由
- */
+/*
+ * @Dsc:路由
+ * @Author: billyhu
+ * @Date: 2018-04-25 17:53:28
+*/
+
 'use strict'
 import Vue from 'vue'
 import store from './vuex/store'

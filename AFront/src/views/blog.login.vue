@@ -21,7 +21,7 @@
           </div>
           <div class="btnGroup">
             <span class="errText">{{errText}}</span>
-            <button @click="loginBtn()" class="btn btn-x-songtao">登陆</button>
+            <button @click="loginBtn()" class="btn btn-login">登陆</button>
           </div>
         </div>
       </div>
@@ -174,7 +174,7 @@
 
           }
           //登录按钮
-          .btn-x-songtao {
+          .btn-login {
             width: 100px;
             background-color: $base-theme-color;
             transition: all ease 300ms;

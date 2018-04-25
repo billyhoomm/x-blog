@@ -1,6 +1,9 @@
-/**
- * Created by xiangsongtao on 16/3/3.
- */
+/*
+ * @Dsc:用户相关
+ * @Author: billyhu 
+ * @Date: 2017-11-25 17:51:23
+*/
+
 let mongoose = require('mongoose');
 let $base64 = require('../utils/base64.utils.js');
 let md5 = require('js-md5');

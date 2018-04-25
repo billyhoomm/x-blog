@@ -1,11 +1,10 @@
-
 API接口文档
 ---
 
 
-### 前提说明
+### 前言
 
-首先，所有的api请求都会都会进行权限验证，目前对以下五种请求及路径会直接通过：
+所有的api请求都会都会进行权限验证，只有以下五种请求及路径会直接通过：
 
 ```
 GET、/register、/login、/imgupload、POST-/comment
@@ -19,28 +18,29 @@ GET、/register、/login、/imgupload、POST-/comment
 | authorization | token {{token}} | 
 
 
-### 补充说明 
-
-- 具体的API请参考目录：routes/api.routes.js文件。  
-- mongodb表结构请参考目录：config/mongoose.js文件。 
+**具体的API请参考目录：**routes/api.routes.js文件。  
+**mongodb表结构请参考目录：**config/mongoose.js文件。 
 
 
 ### API参数通用格式说明
 
 	
-- code：1-成功；2~5-失败；8-数据库查找错误；9-非admin用户；10-token错误或超时（（Token 2h内有效）; 
+- code：
+
+1-成功；
+2~5-失败；
+8-数据库查找错误；
+9-非admin用户；
+10-token错误或超时（（Token 2h内有效）; 
+
 - msg: 服务器返回接口信息;
 - token: 修改数据的接口权限令牌，只有在head中携带此token才能访问特定API（只在注册和登录返回）
 - data: 服务器返回数据
 	
 
-	
-	
+### User相关
 
-
-### User接口相关
-
-- 注册接口
+- 注册
 
 ```
 method: post
@@ -87,7 +87,7 @@ resopnse code:
 2=username already exist;
 ```
 
-- 登录接口
+- 登录
 
 ```
 method: post
@@ -108,7 +108,7 @@ resopnse code:
 2=username or password error;
 ```
 
-- 密码修改接口
+- 密码修改
 
 ```
 method: post
@@ -131,7 +131,7 @@ resopnse code:
 3=user non-exist;
 ```
 
-- 获取全部user信息接口
+- 获取全部user信息
 
 ```
 method: get
@@ -156,7 +156,7 @@ resopnse code:
 ```
 
 
-- 获取某个user信息接口（前台需要）
+- 获取某个user信息（前台展示）
 
 ```
 method: get
@@ -179,7 +179,7 @@ resopnse code:
 2=user non-exist;
 ```
 
-- 获取某个user信息接口（后台需要）
+- 获取某个user信息（后台编辑）
 
 ```
 method: get
@@ -202,7 +202,7 @@ resopnse code:
 2=user non-exist;
 ```
 
-- 修改信息接口
+- 修改user信息
 
 ```
 method: put
@@ -228,7 +228,7 @@ resopnse code:
 2=user non-exist;
 ```
 
-- 删除某个user信息接口
+- 删除某个user信息
 
 ```
 method: delete
@@ -248,9 +248,9 @@ resopnse code:
 
 
 
-### Tags接口相关
+### Tags相关
 
-- 获取全部Tags信息接口（用于后台列表查看）
+- 获取全部Tags（后台编辑）
 
 ```
 method: get
@@ -273,7 +273,7 @@ resopnse code:
 1-success;
 ```
 
-- 获取全部Tags信息接口（具有特殊数据结构，用于前台标签库）
+- 获取全部Tags（前台展示）
 
 ```
 method: get
@@ -302,7 +302,7 @@ resopnse code:
 ```
 
 
-- 获取某个Tags信息接口
+- 获取某个Tags
 
 ```
 method: get
@@ -323,7 +323,7 @@ resopnse code:
 1-success;
 ```
 
-- 新增Tags信息接口
+- 新增Tags
 
 ```
 method: post
@@ -351,7 +351,7 @@ resopnse code:
 ```
 
 
-- 修改Tags信息接口
+- 修改Tags
 
 ```
 method: put
@@ -381,7 +381,7 @@ resopnse code:
 ```
 
 
-- 删除某个Tag接口
+- 删除某个Tags
 
 ```
 method: delete
@@ -398,7 +398,7 @@ resopnse code:
 
 ### Articles接口相关
 
-- 获取全部Articles信息接口（后台页面需要）
+- 获取全部Articles（后台编辑）
 
 ```
 method: get
@@ -424,7 +424,7 @@ resopnse code:
 ```
 
 
-- 获取全部Articles信息接口，具有分页restful（前台-最近更新）
+- 获取全部Articles（前台展示）
 
 ```
 method: get
@@ -450,7 +450,7 @@ resopnse code:
 1-success;
 ```
 
-- 获取某个Article的信息接口（具体文章，前台文章展示）
+- 获取某个Article（前台文章展示）
 
 ```
 method: get
@@ -476,7 +476,7 @@ resopnse code:
 ```
 
 
-- 获取某个Article的信息接口（文章源码，后台文章修改）
+- 获取某个Article（后台文章编辑）
 
 ```
 method: get
@@ -502,7 +502,7 @@ resopnse code:
 ```
 
 
-- 删除某个文章接口
+- 删除某个Article
 
 ```
 method: delete
@@ -518,7 +518,7 @@ resopnse code:
 ```
 
 
-- 文章修改新增接口
+- 修改新增Article
 
 ```
 method: post
@@ -543,7 +543,7 @@ resopnse code:
 2-article non-exist!;
 ```
 
-- 获取文章历史记录(这部分用在-时光机页面)
+- 文章归档
 
 ```
 method: get
@@ -604,7 +604,7 @@ resopnse code:
 ```
 
 
-- 根据tag id查找文章列表(这部分用在-标签库)
+- 根据tag id查找文章列表(标签库)
 
 ```
 method: get
@@ -622,7 +622,7 @@ resopnse code:
 
 ### Comments接口相关
 
-- 获取全部Comments信息接口
+- 获取全部Comments
 
 ```
 method: get
@@ -651,7 +651,7 @@ resopnse code:
 ```
 
 
-- 增加comment的接口
+- 增加comment
 
 ```
 method: post

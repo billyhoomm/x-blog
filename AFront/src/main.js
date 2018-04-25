@@ -1,3 +1,9 @@
+/*
+ * @Dsc:单页应用入口文件
+ * @Author: billyhu
+ * @Date: 2017-11-25 17:51:23
+*/
+
 'use strict';
 import Vue from 'vue';
 import App from './App';

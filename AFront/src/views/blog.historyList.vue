@@ -1,7 +1,3 @@
-/**
-* Created by xiangsongtao on 16/7/24.
-* Description:
-*/
 <template>
   <div class="historyList">
     <div class="cataBox card-shadow" v-for="cataBox of historyList">

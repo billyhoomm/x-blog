@@ -1,3 +1,8 @@
+/*
+ * @Dsc:访问数据统计等
+ * @Author: billyhu 
+ * @Date: 2017-11-25 17:55:41
+*/
 var express = require('express');
 var router = express.Router();
 var cors = require('cors');

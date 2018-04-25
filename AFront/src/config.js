@@ -1,3 +1,9 @@
+/*
+ * @Dsc:前端配置相关（api、url等）
+ * @Author: billyhu
+ * @Date: 2017-11-25 17:51:23
+*/
+
 //线上配置
 let CONFIG;
 
@@ -177,19 +183,13 @@ module.exports = {
    * 切换的背景列表
    * */
   imageList: [
-    'http://billyh.oss-cn-shanghai.aliyuncs.com/bg-img/1.jpg',
     'http://billyh.oss-cn-shanghai.aliyuncs.com/bg-img/2.jpg',
-    'http://billyh.oss-cn-shanghai.aliyuncs.com/bg-img/3.jpg',
     'http://billyh.oss-cn-shanghai.aliyuncs.com/bg-img/4.jpg',
-    'http://billyh.oss-cn-shanghai.aliyuncs.com/bg-img/5.jpg',
-    'http://billyh.oss-cn-shanghai.aliyuncs.com/bg-img/6.jpg',
     'http://billyh.oss-cn-shanghai.aliyuncs.com/bg-img/7.jpg',
-    'http://billyh.oss-cn-shanghai.aliyuncs.com/bg-img/8.jpg',
-    'http://billyh.oss-cn-shanghai.aliyuncs.com/bg-img/9.jpg',
-    'http://billyh.oss-cn-shanghai.aliyuncs.com/bg-img/10.jpg'
+    'http://billyh.oss-cn-shanghai.aliyuncs.com/bg-img/8.jpg'
   ],
 
   // 微信二维码图片
-  socialImgUrl: 'http://ozxkqbp7l.bkt.clouddn.com/icon/wechat.png'
+  socialImgUrl: 'http://cdn.billyhu.com/icon/wechat.png'
 
 };

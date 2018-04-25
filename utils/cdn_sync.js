@@ -6,7 +6,7 @@
 const qn = require('qn');
 const path = require('path');
 const fs = require('fs');
-const config_qn = require('../config/config').qiniu
+const config_qn = require('../config/config_').qiniu;
 
 const root = path.resolve(__dirname, '../public/static/');
 const uploadArr = [];

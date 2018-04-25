@@ -1,7 +1,8 @@
-/**
- * Created by xiangsongtao on 16/9/28.
- * Description:
- */
+/*
+ * @Dsc:获取IP地址
+ * @Author: billyhu 
+ * @Date: 2018-04-25 17:54:01
+*/
 module.exports = function getClientIp(req) {
     let ips = req.headers['x-forwarded-for'] ||
         req.connection.remoteAddress ||

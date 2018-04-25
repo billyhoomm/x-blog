@@ -1,6 +1,8 @@
-/**
- * Created by xiangsongtao on 16/6/26.
- */
+/*
+ * @Dsc:token检查
+ * @Author: billyhu 
+ * @Date: 2018-04-25 17:54:52
+*/
 let $base64 = require('../utils/base64.utils.js');
 let md5 = require('js-md5');
 let mongoose = require('mongoose');

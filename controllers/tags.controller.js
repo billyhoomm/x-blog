@@ -1,7 +1,11 @@
+/*
+ * @Dsc:文章标签相关
+ * @Author: billyhu 
+ * @Date: 2017-11-25 17:51:23
+*/
+
 'use strict';
-/**
- * Created by xiangsongtao on 16/3/4.
- */
+
 let mongoose = require('mongoose');
 
 //数据库查询同一错误处理

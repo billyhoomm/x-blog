@@ -1,8 +1,8 @@
-/**
- * Created by Hsiang on 2016/11/5.
- * 缓存设计
- */
-
+/*
+ * @Dsc:cache控制
+ * @Author: billyhu 
+ * @Date: 2018-04-25 17:53:06
+*/
 function Cache() {
 	/**
 	 * deep copy

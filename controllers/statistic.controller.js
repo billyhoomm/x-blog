@@ -1,8 +1,11 @@
-/**
- * Created by xiangsongtao on 16/3/4.
- */
+/*
+ * @Dsc:统计数据相关
+ * @Author: billyhu 
+ * @Date: 2017-11-25 17:51:23
+*/
+
 let mongoose = require('mongoose');
-let config = require('../config/config.js');
+let config = require('../config/config_.js');
 //数据模型
 let Statistic = mongoose.model('Statistic');
 //数据库查询同一错误处理

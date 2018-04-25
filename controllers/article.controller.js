@@ -1,6 +1,9 @@
-/**
- * Created by xiangsongtao on 16/3/4.
- */
+/*
+ * @Dsc:文章相关
+ * @Author: billyhu 
+ * @Date: 2017-11-25 17:51:23
+*/
+
 let mongoose = require('mongoose');
 
 //MyInfo的数据模型

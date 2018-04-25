@@ -1,8 +1,10 @@
-/**
- * 数据库配置及模型建立
- * */
+/*
+ * @Dsc:数据库配置及模型建立
+ * @Author: billyhu 
+ * @Date: 2018-01-20 17:51:23
+*/
 let mongoose = require('mongoose');
-let config = require('./config.js');
+let config = require('./config_.js');
 
 module.exports = function () {
     mongoose.Promise = global.Promise;

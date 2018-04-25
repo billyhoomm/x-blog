@@ -7,3 +7,4 @@ backup
 .DS_Store
 .svn
 uploads
+config_.js
