@@ -1,6 +1,3 @@
-/**
- * Created by xiangsongtao on 16/3/3.
- */
 let mongoose = require('mongoose');
 let fs = require('fs');
 //MyInfo的数据模型
