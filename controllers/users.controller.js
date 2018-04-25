@@ -1,6 +1,3 @@
-/**
- * Created by xiangsongtao on 16/3/3.
- */
 let mongoose = require('mongoose');
 let $base64 = require('../utils/base64.utils.js');
 let md5 = require('js-md5');
