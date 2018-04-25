@@ -40,7 +40,7 @@
 
         <section class="detail__sns hidden-xs">
           <ul class="SNS">
-            <li class="hidden-lg"><a title="GitHub" target="_blank" href="https://github.com/xiangsongtao"><i
+            <li class="hidden-lg"><a title="GitHub" target="_blank" href="https://github.com/billyhoomm"><i
               class="fa fa-github"></i></a></li>
             <li @click="showSocialImg()" data-toggle="modal"
                 data-target="#socialContact"><i class="fa fa-weixin"></i></li>
