@@ -1,7 +1,3 @@
-/**
- * Created by xiangsongtao on 16/9/28.
- * Description:
- */
 module.exports = function getClientIp(req) {
     let ips = req.headers['x-forwarded-for'] ||
         req.connection.remoteAddress ||
