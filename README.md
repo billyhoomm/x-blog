@@ -83,9 +83,7 @@
 - marked（markdown预览）
 - clipboard（复制到剪贴板，上传图片获得图片访问地址）
 - echarts（仪表盘图表统计）
--.
--.
--.
+- ...
 
 
 #### 配置文件（Config）
