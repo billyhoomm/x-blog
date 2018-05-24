@@ -42,8 +42,9 @@
 |-----最新文章	         //最近10篇文章
 |-----归档	            //博文时间归档
 |-----标签库	        //文章分类
-|-音乐  
-|-背景切换     
+|-----好友链接
+|-音乐
+|-背景切换 
 |-登录			
 |----后台管理----
 |-控制台  		//PV统计、访问地区统计、以及其他数据统计图表	
@@ -72,8 +73,6 @@
 
 - vue-moment（时间格式化）
 - moment.js(日期格式化)
-- font-awesome（字体图标）
-- vStorage.js（localStorage和sessionStorage管理）
 - bootstrap(sass版本，按需使用)
 - jquery(slim版本)
 - bootstrap-datetimepicker（日期选择器）
@@ -83,8 +82,10 @@
 - highlight.js（代码高亮，用户后台文章编辑）
 - marked（markdown预览）
 - clipboard（复制到剪贴板，上传图片获得图片访问地址）
-- js-md5（加密）
 - echarts（仪表盘图表统计）
+-.
+-.
+-.
 
 
 #### 配置文件（Config）
