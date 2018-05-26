@@ -114,9 +114,21 @@
   import marked from "marked";
   import "../theme/codeHighLight.css";
   import "../theme/markdown.scss";
+  import hljs from "highlight.js";
+
+  const renderer = new marked.Renderer();
+
+  renderer.code = (code, language) => {
+    // Check whether the given language is valid for highlight.js.
+    const validLang = !!(language && hljs.getLanguage(language));
+    // Highlight only if the language is valid.
+    const highlighted = validLang ? hljs.highlight(language, code).value : code;
+    // Render the highlighted code with `hljs` class.
+    return `<pre><code class="hljs ${language}">${highlighted}</code></pre>`;
+  };
 
   marked.setOptions({
-    renderer: new marked.Renderer(),
+    renderer: renderer,
     gfm: true,
     tables: true,
     breaks: false,
@@ -128,7 +140,6 @@
       return hljs.highlightAuto(code).value;
     }
   });
-  import hljs from "highlight.js";
   import Multiselect from 'vue-multiselect'
   import API from "../config"
   import Clipboard from "clipboard"
@@ -302,6 +313,7 @@
       'content_raw': function () {
         const _this = this;
         _this.watchContentRawFn();
+        _this.content_marked = marked(_this.content_raw);
       }
     },
 

@@ -11,25 +11,34 @@ let Tags = mongoose.model('Tags');
 let Articles = mongoose.model('Articles');
 let Comments = mongoose.model('Comments');
 let DO_ERROR_RES = require('../utils/DO_ERROE_RES.js');
+let hljs = require('highlight.js');
 
 let marked = require('marked');
-/**
- * markdown转html 配置
- **/
+
+const renderer = new marked.Renderer();
+
+renderer.code = (code, language) => {
+// Check whether the given language is valid for highlight.js.
+const validLang = !!(language && hljs.getLanguage(language));
+// Highlight only if the language is valid.
+const highlighted = validLang ? hljs.highlight(language, code).value : code;
+// Render the highlighted code with `hljs` class.
+return `<pre><code class="hljs ${language}">${highlighted}</code></pre>`;
+};
+
 marked.setOptions({
-    renderer: new marked.Renderer(),
-    gfm: true,
-    tables: true,
-    breaks: true,
-    pedantic: false,
-    sanitize: false,
-    smartLists: true,
-    smartypants: false,
-    highlight: function (code) {
-        return hljs.highlightAuto(code).value;
-    }
+renderer: renderer,
+gfm: true,
+tables: true,
+breaks: false,
+pedantic: false,
+sanitize: true,
+smartLists: true,
+smartypants: false,
+highlight: function (code) {
+    return hljs.highlightAuto(code).value;
+}
 });
-let hljs = require('highlight.js');
 
 /**
  * @name 文档的内容改为摘要，去除不必要的md标记

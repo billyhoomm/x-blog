@@ -129,7 +129,8 @@
     min-height: 100%;
     width: 100%;
     box-sizing: border-box;
-    font-family: Trebuchet MS,Microsoft Jhenghei,Lato,PingFang SC,Open Sans,Helvetica Neue,Arial,Hiragino Sans GB,Microsoft YaHei,WenQuanYi Micro Hei,sans-serif !important;
+    // font-family: Trebuchet MS,Microsoft Jhenghei,Lato,PingFang SC,Open Sans,Helvetica Neue,Arial,Hiragino Sans GB,Microsoft YaHei,WenQuanYi Micro Hei,sans-serif !important;
+    font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,Hiragino Sans GB,PingFang SC,Microsoft Yahei,sans-serif!important;
     opacity: 1;
     /*transition: all ease 500ms;*/
 
