@@ -4,7 +4,7 @@
 [![code style](https://camo.githubusercontent.com/58fbab8bb63d069c1e4fb3fa37c2899c38ffcd18/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f636f64655f7374796c652d7374616e646172642d627269676874677265656e2e737667)](https://standardjs.com/)
 > 文档目的旨在让想学习Vue或者Node或者想开发个人博客的兄弟们借鉴下，碰到错误的地方还望指正
 > 如果有代码问题或者运行错误欢迎提issues或者在我博客下留言
-
+> 博客地址：[The blog of billyhu](http://blog.billyhu.com)
 ### 说明（Instructions）
 
 - 本项目后台基于express、mongodb，前台基于Vue2.0全家桶、bootstrap、scss预编译器以及一众工具类插件
