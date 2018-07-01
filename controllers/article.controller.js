@@ -15,29 +15,19 @@ let hljs = require('highlight.js');
 
 let marked = require('marked');
 
-const renderer = new marked.Renderer();
-
-renderer.code = (code, language) => {
-// Check whether the given language is valid for highlight.js.
-const validLang = !!(language && hljs.getLanguage(language));
-// Highlight only if the language is valid.
-const highlighted = validLang ? hljs.highlight(language, code).value : code;
-// Render the highlighted code with `hljs` class.
-return `<pre><code class="hljs ${language}">${highlighted}</code></pre>`;
-};
-
 marked.setOptions({
-renderer: renderer,
-gfm: true,
-tables: true,
-breaks: false,
-pedantic: false,
-sanitize: true,
-smartLists: true,
-smartypants: false,
-highlight: function (code) {
-    return hljs.highlightAuto(code).value;
-}
+    renderer: new marked.Renderer(),
+    langPrefix:'hljs ',
+    gfm: true,
+    tables: true,
+    breaks: false,
+    pedantic: false,
+    sanitize: true,
+    smartLists: true,
+    smartypants: false,
+    highlight: function (code, lang, callback) {
+      return hljs.highlight(lang, code).value;
+    }
 });
 
 /**
