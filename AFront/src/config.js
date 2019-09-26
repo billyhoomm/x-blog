@@ -9,14 +9,14 @@ let CONFIG;
 
 if (process.env.NODE_ENV === 'production') {
   CONFIG = {
-    url: "http://blog.billyhu.com",
+    url: "https://www.billyhu.com",
     MY_INFO_ID: '5a09c50775bbda8712825a63',
     MY: '博主',
     EMAIL: 'billyhoom@qq.com'
   };
 } else {
   CONFIG = {
-    url: "http://blog.billyhu.com",
+    url: "https://www.billyhu.com",
     //我的信息_id
     MY_INFO_ID: '5a09c50775bbda8712825a63',
     //我对对评论进行回复的信息
@@ -190,6 +190,6 @@ module.exports = {
   ],
 
   // 微信二维码图片
-  socialImgUrl: 'http://cdn.billyhu.com/icon/wechat.png'
+  socialImgUrl: 'https://cdn.billyhu.com/icon/wechat.png'
 
 };

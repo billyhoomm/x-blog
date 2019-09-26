@@ -4,7 +4,7 @@
  * @Date: 2018-01-20 17:51:23
 */
 let mongoose = require('mongoose');
-let config = require('./config_.js');
+let config = require('./config.js');
 
 module.exports = function () {
     mongoose.Promise = global.Promise;

@@ -7,5 +7,6 @@ backup
 .DS_Store
 .svn
 uploads
-config_.js
+config_me.js
 .vscode
+public/

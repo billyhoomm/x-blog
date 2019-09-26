@@ -10,7 +10,7 @@ let router = express.Router();
 let multipart = require('connect-multiparty');
 let multipartMiddleware = multipart();
 
-const config_qn = require('../config/config_').qiniu;
+const config_qn = require('../config/config').qiniu;
 const qn = require('qn');
 let client = qn.create(config_qn);
 

@@ -6,7 +6,7 @@
 const qn = require('qn');
 const path = require('path');
 const fs = require('fs');
-const config_qn = require('../config/config_').qiniu;
+const config_qn = require('../config/config').qiniu;
 
 const root = path.resolve(__dirname, '../public/static/');
 const uploadArr = [];
@@ -33,7 +33,7 @@ function explorer(path){
                     }else{
                         // 读出所有的文件
                         // 此处需要和html-webpack-plugin插件填充的打包目录配合
-                        let filename = path.split('\\').pop() + '/' + file;
+                        let filename = path.split('public')[1] + '/' + file;
                         let filepath = path + '/' + file;
                         uploadArr.push(uploadFile(filename, filepath));
                         res(0);

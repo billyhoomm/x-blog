@@ -31,7 +31,7 @@ export default new Vuex.Store({
   state: {
     isShowMyWords: false,//是否显示我的简介
     isLogin: false,//是否登录
-    socialImgUrl: 'http://cdn.billyhu.com/icon/wechat.png',//显示社交图片
+    socialImgUrl: 'https://cdn.billyhu.com/icon/wechat.png',//显示社交图片
     isShowBigAdmin: false,//是否展开后台页面->用于文章编辑预览
     hasCommentInfo:false,//设置-文章评论是否设置了昵称和邮箱，全局性质
 

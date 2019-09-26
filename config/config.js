@@ -1,11 +1,10 @@
-/*
- * @Dsc:configfile
- * @Author: billyhu 
- * @Date: 2018-04-25 17:49:52
-*/
 module.exports = {
+    USERNAME: 'xxx',
+    HOST: '118.111.111.221',
+    PASSWORD: 'xxxxx',
+    REMOTE_PATH: '/home/blog',
     mongodb: "mongodb://uid:password@ip:port/path",
-    baiduAK:"yFKaMEQnAYc1hA0AKaNyHGd4HTQgTNvO",
+    baiduAK:"xxxxxxxx",
     qiniu: {
         accessKey:'xxxxxxxxxxxxxx',
         secretKey:'xxxxxxxxxxxxxxx',

@@ -5,7 +5,7 @@
 */
 
 let mongoose = require('mongoose');
-let config = require('../config/config_.js');
+let config = require('../config/config.js');
 //数据模型
 let Statistic = mongoose.model('Statistic');
 //数据库查询同一错误处理
