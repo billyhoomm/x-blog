@@ -8,3 +8,4 @@ backup
 .svn
 uploads
 config_.js
+.vscode

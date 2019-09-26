@@ -7,11 +7,13 @@
 
 > 博客地址：[The blog of billyhu](http://blog.billyhu.com)
 
+> 考虑使用TypeScript + React重构前后台...
+
 ### 说明（Instructions）
 
-- 本项目后台基于express、mongodb，前台基于Vue2.0全家桶、bootstrap、scss预编译器以及一众工具类插件
-- 项目前后台代码在同一个目录中，AFront中为前端代码，build后会打包静态文件到public文件夹中
-- 鉴于云服务1M的小水管，项目中静态文件以及图片均使用七牛云CDN（拥有build自动上传功能）
+- 本项目后台基于express、mongodb，前台基于Vue2.0全家桶及一众UI、工具类插件
+- 项目前后台代码在同一个目录中，AFront文件夹为前端代码，build后会打包静态文件到public文件夹中
+- 鉴于云服务1M的小水管，项目中静态文件以及图片均使用七牛云CDN（build自动上传）
 
 ### 项目结构（Project structure）
 ---
@@ -71,9 +73,8 @@
 
 **...**
 
-#### 插件（Plugins）
+#### 插件列表（Plugins）
 
-- vue-moment（时间格式化）
 - moment.js(日期格式化)
 - bootstrap(sass版本，按需使用)
 - jquery(slim版本)
@@ -124,7 +125,7 @@ npm run build #构建
 **utils/cdn_sync.js**
 
 - 运行 `npm run cdnsync`, 此处代码会将public中的所有文件上传到七牛云对应的空间
-- TODO: 后续有时间会加上文件以及文件夹过滤功能，整合成webpack插件
+- TODO: 加上文件以及文件夹过滤功能，整合成webpack插件
 
 #### 启动（Start）
 1. Nodejs(6.0.0+)/npm/Mongodb安装(不会的自行google)；
