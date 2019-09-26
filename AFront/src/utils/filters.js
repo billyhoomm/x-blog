@@ -10,7 +10,7 @@ export const addImgPrefix = function (imgName) {
     return false;
   } 
 
-  return `http://` + imgName
+  return `https://` + imgName
 
 }
 

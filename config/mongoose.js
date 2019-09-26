@@ -10,6 +10,8 @@ module.exports = function () {
     mongoose.Promise = global.Promise;
     let db = mongoose.connect(config.mongodb,{
         useMongoClient: true
+    }).then(res => {
+        console.log(res)
     });
     let Schema = mongoose.Schema;
     /**

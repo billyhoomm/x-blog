@@ -23,7 +23,7 @@ try{
     dest: `./release/${ARCHIVE_NAME}`,
     tar: {
       ignore: function (name) {
-        return path.extname(name) === '.git' || path.dirname(name) === 'AFront'
+        return path.extname(name) === '.git' || path.dirname(name) === 'AFront' || path.extname(name) === 'config.js'
       }
     },
   }, function (err) {
