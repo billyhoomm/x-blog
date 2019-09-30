@@ -5,7 +5,7 @@
 > 文档目的旨在让想学习Vue或者Node或者想开发个人博客的兄弟们借鉴下，碰到错误的地方还望指正
 > 如果有代码问题或者运行错误欢迎提issues或者在我博客下留言
 
-> 博客地址：[The blog of billyhu](https://www.billyhu.com)
+> 博客地址：[The blog of billyhu](http://blog.billyhu.com)
 
 > 考虑使用TypeScript + React重构前后台...
 

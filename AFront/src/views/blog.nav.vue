@@ -103,7 +103,7 @@
       clearSessionStorage(){
         this.$localStorage.$delete('userBackground');
         this.$sessionStorage.$reset();
-        window.location.href = 'https://www.billyhu.com';
+        window.location.href = 'http://blog.billyhu.com';
       },
       //加载资源,成功执行回调
       _loadImg(url, cb) {

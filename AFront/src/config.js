@@ -9,14 +9,14 @@ let CONFIG;
 
 if (process.env.NODE_ENV === 'production') {
   CONFIG = {
-    url: "https://www.billyhu.com",
+    url: "http://blog.billyhu.com",
     MY_INFO_ID: '5a09c50775bbda8712825a63',
     MY: '博主',
     EMAIL: 'billyhoom@qq.com'
   };
 } else {
   CONFIG = {
-    url: "https://www.billyhu.com",
+    url: "http://blog.billyhu.com",
     //我的信息_id
     MY_INFO_ID: '5a09c50775bbda8712825a63',
     //我对对评论进行回复的信息
