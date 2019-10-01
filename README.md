@@ -7,6 +7,8 @@
 
 > 博客地址：[The blog of billyhu](http://blog.billyhu.com)
 
+> HUGO 博客地址：[billyhu's blog](https://billyhu.com)
+
 > 考虑使用TypeScript + React重构前后台...
 
 ### 说明（Instructions）
