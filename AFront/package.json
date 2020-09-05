@@ -21,7 +21,7 @@
     "marked": "^0.3.6",
     "mint-ui": "^2.0.4",
     "moment": "^2.21.0",
-    "node-sass": "^4.0.0",
+    "node-sass": "^4.13.1",
     "qiniu": "^7.1.1",
     "sass-loader": "^6.0.7",
     "scss-loader": "^0.0.1",
