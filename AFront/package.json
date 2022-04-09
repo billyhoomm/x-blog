@@ -20,7 +20,7 @@
     "lodash": "^4.16.6",
     "marked": "^0.3.6",
     "mint-ui": "^2.0.4",
-    "moment": "^2.21.0",
+    "moment": "^2.29.2",
     "node-sass": "^4.0.0",
     "qiniu": "^7.1.1",
     "sass-loader": "^6.0.7",
